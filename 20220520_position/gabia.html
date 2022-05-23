@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/jquery.bxslider.css">
+    <script src="../js/jquery-3.1.1.min.js"></script>
+    <script src="../js/jquery.bxslider.js"></script>
+    <style>
+        *{margin: 0;padding: 0;box-sizing: border-box;}
+        li{list-style: none;}
+        .clearfix::after{content:"";display: block;clear: both;}
+        a:link,a:visited{color: black;text-decoration: none;}
+        img{display: block;}
+        body{font-family: 'Noto Sans KR', sans-serif;}
+
+        /* header */
+        .headerWrap{width: 1440px;margin: 0 auto;position: relative}
+        .headerWrap>h1{width: 168px;line-height: 60px;}
+        .headerWrap img{display: initial;}
+        .headerWrap .navbar{width: 540px;
+            position: absolute;right: 20px;top:0;}
+        .headerWrap .navbar li{float:left;width: 25%;}
+        .headerWrap .navbar a{display: block;
+            font-size: 15px;text-align: center;line-height: 60px;}
+        .headerWrap .navbar a:hover{color:brown;}
+            /* line-height 가운데 정렬하기 위해 / 나중에 바꿈(a에서도 동일)*/
+            /* 블록설정 초기화 / line-height 값이 안들어가서*/
+            /* width값 대신 a에서 padding 값으로 지정해도 됨 */
+            /* a태그에 block을 입혀주면 블록설정이 되어 커서가 다 손모양으로 지정 /
+            text-align은 블록지정을 해야 정렬이 됨*/
+
+        /* visual */
+        /* bxslider -> 이미지, jquery, bxslider.jss, bxslider.css 가져오기
+           css/js폴더를 생성 후 각각 파일 넣고 images파일에 이미지 넣은 후, 
+           link, script 소스 입력*/
+        /* bxslider 경계선 없애기와 동그라미 위치 옮기기*/
+        .bx-wrapper {-moz-box-shadow: 0 0 0 #ccc;
+        -webkit-box-shadow: 0 0 0 #ccc;
+        box-shadow: 0 0 0 #ccc;
+        border: 0 solid #fff;margin-bottom: 0;}
+        .bx-wrapper .bx-pager{bottom: 60px;}
+
+        .visual .txtWrap{position: absolute;left:calc( 50% - 720px) ;top:120px}
+        .visual img{margin-bottom: 30px;}
+        .visual .txtWrap>h1{color:#fff;font-size: 50px;margin-bottom: 20px;}
+        .visual .txtWrap>p{color:#fff;font-size: 19px;margin-bottom: 50px;}
+        .visual .btn1{display: inline-block;padding: 10px 40px;
+            border: 1px solid #fff;border-radius:77.5px;
+            font-size: 15px;color:#fff;}
+        .visual .btn1:hover{background-color: #fff;color:black;
+            transition: 0.3s;}
+
+        /* sec_1st */
+        
+        .sec_1st{width: 1440px;margin: 0 auto;padding: 0 0 120px 0;border-bottom: 1px solid #333;}
+        .sec_1st .content>div{float:left;width: 701px;margin-right: 38px;}
+        .sec_1st .content>div:last-child{margin-right: 0;}
+        .sec_1st>h2{font-size: 40px;text-align: center;margin:90px 0;}
+
+        .conItem>div{float:left;}
+        .conItem .img{background-color: #f6f6f6;border-radius: 80.5px;margin-right: 40px;}
+        .conItem .textWrap{padding-top: 30px;}
+        .conItem .textWrap>h3>a{font-size: 22px;margin-bottom: 10px;display: block;}
+        .conItem .textWrap>h3:hover{text-decoration:underline;transition: 0.3s;}
+        .conItem .textWrap>p>a{font-size: 18px;color:#7c7c7c;display: block;}
+        .conItem .textWrap>p:hover{text-decoration:underline;transition: 0.3s;}
+
+            /* Item을 감싸주는 content가 필요함 / 그 안 요소에 float값을 줌 */
+            /* 글씨 전체에 커서를 올렸을 때, 손모양을 주고 싶다면 a에 display:block을 줌 */
+
+        /* sec_2nd */
+
+        .sec_2nd{width: 1440px;margin: 0 auto;padding: 0 0 120px 0;}
+        .sec_2nd .content>div{float:left;width: 701px;margin-right: 38px;}
+        .sec_2nd .content>div:last-child{margin-right: 0;}
+        .sec_2nd>h2{font-size: 40px;text-align: center;margin:90px 0;}
+
+        .conItem>div{float:left;}
+        .conItem .img{background-color: #f6f6f6;border-radius: 80.5px;margin-right: 40px;}
+        .conItem .textWrap{padding-top: 30px;}
+        .conItem .textWrap>h3>a{font-size: 22px;margin-bottom: 10px;display: block;}
+        .conItem .textWrap>h3:hover{text-decoration:underline;transition: 0.3s;}
+        .conItem .textWrap>p>a{font-size: 18px;color:#7c7c7c;display: block;}
+        .conItem .textWrap>p:hover{text-decoration:underline;transition: 0.3s;}
+
+        /* sec_3rd */
+
+        .bg1{padding: 120px 0;background-color:rgb(246, 246, 246)}
+        .sec_3rd{width: 1440px;margin: 0 auto;}
+        .sec_3rd .left{float:left;width: 440px;}
+        .sec_3rd .left h2{font-size: 40px;}
+        .sec_3rd .right{float:left;width: 1000px;}
+        .sec_3rd .right li{float:left;margin-right: 16px;margin-bottom: 16px;}
+        .sec_3rd .right li:nth-child(2n){margin-right: 0;}
+        .sec_3rd .right li:last-child{width: 100px;margin-bottom: 0;}
+
+        /* sec_4th */
+
+        .bg2{background-image: url(images/bg_ask\ \(2\).jpg);padding: 100px 0;}
+        .sec_4th{width: 1440px;margin: 0 auto;}
+        .sec_4th h2{font-size: 40px;color:#fff;text-align: center;margin-bottom: 24px;}
+        .sec_4th p{font-size:20px;color: #fff;text-align: center;margin-bottom: 24px;}
+        .sec_4th .butWrap{width: 1440px;margin: 0 auto;text-align: center;}
+        .sec_4th .btn2{padding: 10px 30px;border:1px solid #fff;display: inline-block;
+            border-radius: 60px;color:#fff;}
+        .sec_4th .btn2:hover{background-color: #fff;color:#333;trasition:0.3s}
+
+        /* 버튼 가운데로 정렬할 때, 버튼을 감싸는 태그를 하나 더 만들고 text정렬 */
+        /* 버튼은 a태그로 만들기 */
+
+
+        
+
+        
+
+    </style>
+    <script>
+        $(document).ready(function(){
+            $(".slide").bxSlider()
+        })
+    </script>
+</head>
+<body>
+    <header class="headerWrap">
+        <h1><a href="#"><img src="images/logo (2).png" alt=""></a></h1>
+        <nav class="navbar">
+        <ul class="clearfix">
+            <li><a href="#">아마존입점</a></li>
+            <li><a href="#">알리바바입점</a></li>
+            <li><a href="#">쇼핑몰제작</a></li>
+            <li><a href="#">국내몰운영</a></li>
+        </ul>
+        </nav>
+    </header>
+        <div class="visual">
+            <ul class="slide">
+                <li>
+                    <img src="images/210611_bg (1).jpg" alt="">
+                    <div class="txtWrap">
+                        <img src="images/210611_logo (2).png" alt="">
+                        <h1>중소벤처기업진흥공단<br>온라인수출지원사업 공식 수행기관 선정</h1>
+                        <p>2016년부터 7년 연속 선정, 가비아CNS</p>
+                        <a href="#" class="btn1">자세히보기</a>
+                    </div>
+                </li>
+                <li>
+                    <img src="images/210616_bg (2).jpg" alt="">
+                    <div class="txtWrap">
+                        <img src="images/210616_logo (2).png" alt="">
+                        <h1>알리바바닷컴<br>GGS 멤버십 할인</h1>
+                        <p>골드서플라이어(GGS) 멤버십 및 GGS 플러스 멤버십 단기 할인 프로모션</p>
+                        <a href="#" class="btn1">자세히보기</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    <section class="sec_1st">
+        <h2>해외 마켓 전문가가<br>수출을 도와드립니다</h2>
+        <div class="content clearfix">
+            <div class="conItem clearfix">
+                <div class="img"><a href="#"><img src="images/logo_amazon (3).png" alt=""></a></div>
+                <div class="textWrap">
+                    <h3><a href="#">아마존 입점</a></h3>
+                    <p><a href="#">전 세계 3억명의 아마존 고객을 대상으로<br>
+                        고객사의 온라인 스토어를 오픈 및 운영 대행</a></p>
+                </div>
+            </div>
+            <div class="conItem">
+                <div class="img"><a href="#"><img src="images/logo_alibaba (3).png" alt=""></a></div>
+                <div class="textWrap">
+                    <h3><a href="#">알리바바 입점</a></h3>
+                    <p><a href="#">글로벌 최대 온라인 B2B 플랫폼 알리바바닷컴의 공식파트너<br>
+                        알리바바 입점 및 운영 대행</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="sec_2nd">
+        <h2>해외 마켓 전문가가<br>수출을 도와드립니다</h2>
+        <div class="content clearfix">
+            <div class="conItem clearfix">
+                <div class="img"><a href="#"><img src="images/logo_amazon (3).png" alt=""></a></div>
+                <div class="textWrap">
+                    <h3><a href="#">아마존 입점</a></h3>
+                    <p><a href="#">전 세계 3억명의 아마존 고객을 대상으로<br>
+                        고객사의 온라인 스토어를 오픈 및 운영 대행</a></p>
+                </div>
+            </div>
+            <div class="conItem">
+                <div class="img"><a href="#"><img src="images/logo_alibaba (3).png" alt=""></a></div>
+                <div class="textWrap">
+                    <h3><a href="#">알리바바 입점</a></h3>
+                    <p><a href="#">글로벌 최대 온라인 B2B 플랫폼 알리바바닷컴의 공식파트너<br>
+                        알리바바 입점 및 운영 대행</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="bg1">
+        <section class="sec_3rd clearfix">
+            <div class="left clearfix">
+                <h2>가비아 글로벌이<br>더 특별한 이유</h2>
+            </div>
+            <div class="right">
+                <ul class="clearfix">
+                    <li><img src="images/banner2.png" alt=""></li>
+                    <li><img src="images/banner2.png" alt=""></li>
+                    <li><img src="images/banner2.png" alt=""></li>
+                    <li><img src="images/banner2.png" alt=""></li>
+                    <li><img src="images/banner1.png" alt=""></li>
+                </ul>
+            </div>
+        </section>
+    </div>
+    <div class="bg2">
+        <section class="sec_4th">
+            <h2>간단한 궁금증이라도 지금 바로 확인해보세요</h2>
+            <p>가비아CNS의 해외 마켓 전문가가 답변을 드립니다.</p>
+            <h2>070-4331-5361</h2>
+            <div class="butWrap"> 
+                <a href="#" class="btn2">상담하기</a></div>
+            </div>
+        </section>
+    </div>
+    <section class="sec_5th">
+        <div class="content">
+            <div class="img"><img src="images/1 (1).jpeg" alt=""></div>
+            <div class="btn3">새소식</div>
+            <div class="btn4">공지</div>
+        </div>
+    </section>
+
+</body>
+</html>
