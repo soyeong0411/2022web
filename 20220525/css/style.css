@@ -1,0 +1,34 @@
+@charset "utf-8";
+
+.navWrap{background-color: #1D5DA4;}
+.nav{width: 980px;margin: 0 auto;}
+.navWrap .nav ul li{float:left;width:calc( 980px / 6);
+    border-left: 1px solid #336dac;}
+.navWrap .nav ul li:last-child{border-right: 1px solid #336dac;}
+.nav li a{display: block;color:#fff;height: 45px;text-align: center;
+    line-height: 45px;
+    }
+.nav li a:hover{background-color: cornflowerblue;}
+/* .boxWrap{position: relative;
+    width: 500px;height: 500px;background-color: antiquewhite;}
+.box{position: absolute;left: 50%;top: 50%;
+    width: 100px;height: 100px;background-color: aquamarine;
+margin-left: -50px;margin-top: -50px;} */
+/* left:calc( 50% - 50px)/top:" */
+
+.boxWrap{display: flex;justify-content: center;align-items: center;
+    width: 500px;height: 500px;background-color: antiquewhite;}
+.box{width: 100px;height: 100px;background-color: aquamarine;
+}
+
+.utilWrap{border-bottom:1px solid #000;margin-bottom: 20px;}
+.utilWrap .utilMenu{float: right;}
+/* width가 있으면 margin-left:auto도 가능 */
+.utilWrap .util{width: 980px;margin: 0 auto;}
+.utilMenu ul li{float:left;position: relative;}
+.utilMenu ul li::after{content:"";display: block;width: 1px;
+    height: 12px;background-color: #dcdcdc;
+    position: absolute;right: 0;top: 6px;}
+.utilMenu ul li:last-child:after{display: none;}   
+.utilMenu li a{display: block;line-height: 12px;font-size: 12px;
+    padding: 7px 15px;}
