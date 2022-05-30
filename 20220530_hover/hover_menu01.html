@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/reset.css">
+</head>
+<style>
+    .navbar{width: 1000px;margin: 0 auto;}
+    .navbar li{float:left;width:calc(100% / 6) ;}
+    .navbar li:hover{background-color:blue;}
+    /* li에 폰트글씨를 넣으면 reset에 a색상을 지정했기 때문에 li에 주면 안됨  */
+    /* .navbar li:hover a{color:aliceblue} */
+    .navbar li a{display: block;line-height:40px; text-align: center;transition: 0.5s;}
+    .navbar li a:hover{background-color: violet;color:aliceblue;}
+
+    .visual{height: 300px;background-color: pink;margin-bottom: 20px;}
+    .container{width: 1000px;margin: 0 auto;}
+            .sec01 li{float: left;width: calc((100% - 20px*3 ) / 4);margin-right: 20px;border-radius: 5px;
+            overflow: hidden;}
+       /* overflow: hidden; */
+    .sec01 li img{width: 100%; } /* 이미지가 li width값보다 크므로 w100%로 조절 */
+    /* radius값은 li에 줄지 img에 줄지 선택 / li에 주면 이미지는 변동이 없음 그래서 overflow:hidden을 줌
+    img자체에 radius 값을 주면 li는 당연 그대로*/
+    .sec01 li:last-child{margin-right: 0;}
+
+    .sec01 li .txt{width: 100%;height: 100%;position: absolute;top: 0;left: 0;background-color:rgba(0,0,255,0.5);
+        display: flex;justify-content: center;align-items: center;color: aliceblue;transition: 0.5s;opacity: 0;
+        cursor: pointer;}
+    /* height: 100% 부모자의 크기가 있어야 함*/
+    /* flex는 부모한테 넣어 줌 */
+    
+    .sec01 li{position: relative;}
+    .sec01 h2{text-align: center;margin-bottom: 20px;}
+    .sec01>p{text-align: center;margin-bottom: 20px;}
+    .sec01 h2:after{content:"";display: block;width: 50px;height: 2px;background-color: blueviolet;margin: 10px auto;}
+
+    .sec01 li:hover .txt{opacity: 1;}
+
+</style>
+<body>
+    <nav class="navbar">
+        <ul class="clearfix">
+            <li><a href="#">menu1</a></li>
+            <li><a href="#">menu2</a></li>
+            <li><a href="#">menu3</a></li>
+            <li><a href="#">menu4</a></li>
+            <li><a href="#">menu5</a></li>
+            <li><a href="#">menu6</a></li>
+        </ul>
+    </nav>
+    <div class="visual"></div>
+    <div class="container">
+        
+        <section class="sec01">
+            <h2>gallery</h2>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil, soluta?</p>
+            <ul class="clearfix">
+                <!-- w1000, gutter20*3 -->
+                <li><div class="txt">test</div>
+                    <img src="../images/testimg.jpg" alt="">
+                </li>
+                <li><div class="txt">haha</div>
+                    <img src="../images/testimg.jpg" alt="">
+                </li>
+                <li><div class="txt">coco</div>
+                    <img src="../images/testimg.jpg" alt="">
+                </li>
+                <li><div class="txt">coco</div>
+                    <img src="../images/testimg.jpg" alt="">
+                </li>
+            </ul>
+        </section>
+    </div>
+</body>
+</html>

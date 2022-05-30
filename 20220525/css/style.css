@@ -18,8 +18,7 @@ margin-left: -50px;margin-top: -50px;} */
 
 .boxWrap{display: flex;justify-content: center;align-items: center;
     width: 500px;height: 500px;background-color: antiquewhite;}
-.box{width: 100px;height: 100px;background-color: aquamarine;
-}
+.box{width: 100px;height: 100px;background-color: aquamarine;}
 
 .utilWrap{border-bottom:1px solid #000;margin-bottom: 20px;}
 .utilWrap .utilMenu{float: right;}
