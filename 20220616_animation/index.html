@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <style>
+        body,html{height: 100%;}
+        /* 100vh도 가능 body에 높이값이 있어야 align이 적용*/
+        body{display: flex;justify-content: center;align-items: center;
+            background-color: #000;
+        }
+
+        .box{
+            width: 100px;height: 100px;background: red;
+            animation-name:ani;
+            animation-duration: 1s;
+
+            animation-fill-mode: forwards; /* 마지막 멈춤 */
+            animation-iteration-count: infinite; /* 반복 횟수 */
+            animation-direction: alternate; /* 복원 */
+            animation-timing-function: linear;
+        }
+        /* @keyframes ani {
+            from{margin-left: 0;}
+            to{margin-left: 100px;}
+        } */
+        @keyframes ani {
+            0%{transform: translateY(0) rotate(0);opacity: 0;}
+            100%{transform: translateY(-100px) rotate(90deg);opacity: 1;}
+            /* 100%{transform: translateY(0) rotate(0);opacity: 0;} */
+        }
+
+        .scroll{
+            width: 100px;height: 200px;
+            border: 5px solid #fff;
+            position: absolute;bottom: 20px;
+            border-radius: 50px;
+        }
+
+        .scroll:after{
+            content:"";display: block;
+            width: 50px;height: 50px;background: #fff;
+            border-radius: 50%;
+            position: absolute;left: 50%;margin-left: -25px;top:20px;
+            /* animation-name: circle; */
+            animation-duration: 1s;
+
+            animation-fill-mode: forwards;
+            animation-iteration-count: infinite;
+            /* animation-direction: alternate; */
+        }
+        /* 시간이 기준 */
+        @keyframes circle{
+            0%{top:20px;opacity: 1;}
+            20%{top:40px;opacity: 1;}
+            100%{top:50px;opacity: 0;}
+        }
+        
+        .scroll:hover:after{animation-name: circle;}
+    
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+
+    <div class="scroll"></div>
+    </div>
+</body>
+</html>
