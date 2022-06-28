@@ -1,9 +1,9 @@
 
-var userInput = prompt("가위,바위,보를 입력하세요");
+var userInput = window.prompt("가위,바위,보를 입력하세요");
 console.log(userInput)
 
 var num = Math.floor(Math.random()*10);
-console.log(num)
+console.log(num)//console창에 띄워줌
 
 // 저장소를 미리 만들어 놔야함
 
