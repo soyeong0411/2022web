@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{background-color: pink;}
+        div{background-color: orange;}
+        .box{background-color: yellow;}
+    </style>   
+</head>
+<body>
+    <div id="box" class="box">1</div>
+    <div>2</div>
+    <div class="box">3</div>
+
+    <script>
+        for(var i=2;i<10;i++){
+            document.write("3 x " + i + "=" + 3*i +"<br>");
+        }
+
+        for(let i=2;i<10;i++){
+            let gugudan = `3 x ${i} = ${3*i}`
+            console.log(gugudan)
+        }
+
+        let gugudan = ""
+        for(let i=2;i<10;i++){
+            gugudan += `3 x ${i} = ${3*i}<br>`
+            
+        }
+        console.log(gugudan);
+        document.getElementById("box").innerHTML = gugudan;
+        document.getElementsByClassName("box")[1].innerHTML = gugudan;
+        document.getElementsByTagName("div")[1].innerHTML = gugudan;
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <script>
+        let gugudan = '';
+        // var gugudan =''; //전역변수
+        for(var i=2;i<10;i++){
+            // document.write("3 x " + i + "=" + 3*i +"<br>");
+            // document.write(`3 x ${i} = ${3*i}<br>`)
+            gugudan += `3 x ${i} = ${3*i}<br>`;
+        }
+        console.log(gugudan);
+        document.getElementById("box").innerHTML = gugudan;
+        // document.getElementsByClassName()[0]
+        // document.getElementsByTagName("div")[]
+    </script> -->
+</body>
+</html>
