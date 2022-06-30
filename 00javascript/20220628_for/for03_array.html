@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>소영's 성적</h2>
+    <div>국어 : <span class="kor">0</span>점</div>
+    <div>수학 : <span class="math">0</span>점</div>
+    <div>영어 : <span class="eng">0</span>점</div>
+
+    <div>
+        <ul class="score">
+
+        </ul>
+    </div>
+
+    <script>
+        let so = [80,90,80]; //데이터
+        let img = ["img1.jpg","img2.jpg","img3.jpg","img4.jpg","img5.jpg"]
+        //확장자 있어야 함 or ${img[i]}.jpg 확장자 넣어줘야 함
+
+        // document.querySelector(".kor").innerHTML = so[0];
+        // document.querySelector(".math").innerHTML = so[1];
+        // document.querySelector(".eng").innerHTML = so[2];
+
+        let score = "";
+        for(let i=0;i<img.length;i++){
+            score += "<li>"+ so[i] + "</li>"
+            // score += "<li><img src='../../images/" + img[i] +"'></li>"
+            // score += `<li><img src="../../images/${img[i]}"></li>`
+        }
+
+        console.log(score)
+        document.querySelector(".score").innerHTML = score
+    </script>
+</body>
+</html>

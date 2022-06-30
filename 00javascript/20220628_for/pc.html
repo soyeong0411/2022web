@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul class="score"></ul>
+
+    <script>
+        let sc = [100, 50, 80, 70];
+
+        let score = ""
+        for(let i=0;i<4;i++){
+            // score += "<li>" + sc[i] + "</li>"
+            score += `<li> ${sc[i]} </li>`
+        }
+
+        document.querySelector(".score").innerHTML = score
+        //document.querySelector(".score").innerHTML = sc[0];
+        //document.querySelector(".score").innerHTML = sc[1];
+    </script>
+</body>
+</html>
