@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <style>
+        .toggle{
+            width: 50px;height: 50px;
+            border: 1px solid #000;
+            border-radius: 10px;
+            display: flex;justify-content: center;align-items: center;
+            position: relative;
+            
+        }
+        .toggle div{
+            width: 30px;height: 3px;
+            background: #000;
+            border-radius: 15px;
+            position: absolute;
+            transition: .3s;
+        }
+        .toggle .bar1{
+            transform: translateY(-10px);        
+        }
+        .toggle .bar3{
+            transform: translateY(10px);             
+        }
+
+        /* active는 body에 클래스명을 지정해주지 않음 addClass해줄거기때문에 */
+        .toggle.active .bar1{
+            transform: rotate(45deg);
+        }
+        
+        .toggle.active .bar2{
+            opacity: 0;
+        }
+
+        .toggle.active .bar3{
+            transform: rotate(-45deg);
+        }
+
+        #contents{
+            width: 100px;height: 300px;
+            background: rgb(228, 218, 182);
+            position: absolute;left: -100%;
+            transition: .3s;
+        }
+        /* view도 addClass */
+        #contents.view{left: 0;}
+
+    </style>
+</head>
+ <body>
+
+    <div class="toggle">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+    </div>
+
+    <div id="contents">
+        <div>
+            이름 : <span class="name">000</span><br>
+            나이 : <span class="age">00</span> 세
+        </div>
+        <button onclick="insertName('lee',100)">lee</button> 
+        <!-- insertName은 함수 -->
+        <hr>
+        내 나이는 <span class="myAge">00</span> 입니다.
+    </div>
+
+    <script>
+
+        const toggleElem = document.querySelector(".toggle")
+        const contentsElem = document.querySelector("#contents")
+
+        toggleElem.addEventListener("click",function(){
+            toggleElem.classList.toggle("active")
+            contentsElem.classList.toggle("view")
+        })
+        //toggle을 클릭하면 toggle에 active를 show&hide 해줘
+        //toggle을 클릭하면 #contents에 view를 show&hide 해줘
+
+        function insertName(name,age){ //매개변수 = 데이터그릇
+            document.querySelector(".name").innerHTML = name // 클래스 name에 데이터그릇인name안에 있는 값을 넣어라
+            document.querySelector(".age").innerHTML = minusvalue// 클래스 age에 데이터그릇인age안에 있는 값을 넣어라
+        }
+
+        function number(num1,num2){ // 일반함수
+            let sum = num1 + num2;  // sum은 이 식 안에서만 사용하면 좋음
+            return sum; // 외부에서 값을 쓰겠다
+        }
+        let sumvalue = number(40,30) // sumvalue에 number값을 담겠다
+        document.write(sumvalue);
+
+
+        //value(15,5) // 함수 위에 쓰면 오류 
+        const value = function(num1,num2){ // 함수표현식
+            let minus = num1 - num2
+            return minus
+        }
+
+        let minusvalue = value(30,15)
+        document.write(minusvalue)
+
+        function myAge(num1,num2){
+            let Age = num1 - num2;
+            return Age
+        }
+        let myAge1 = myAge(30,20)
+
+        document.querySelector(".myAge").innerHTML = myAge1
+
+    </script>
+</body>
+</html>

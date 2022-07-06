@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div>
+        성명 : <span class="name">이소영</span>
+        나이 : <span class="age">00</span> 세
+    </div>
+    <button onclick="insertName('야나두',20)">야나두</button>
+
+    <hr>
+    나의 이름은 <span class="myName">슈퍼맨</span>
+    <script>
+
+        
+        function insertName(name,age){
+            document.querySelector(".name").innerHTML = name;
+            document.querySelector(".age").innerHTML = age;
+
+        }
+
+        document.querySelector
+        //fncName('이소영') // 앞쪽에 넣으면 에러
+        const fncName = function(name){                 // 함수표현식
+            return name // 함수 안에서 외부로 쓸 때 return
+        }
+        console.log(fncName(''))
+        let namevalue =
+ 
+
+        const text1 = "test1";
+        const text2 = "test2";
+        
+        print(text1) // print안에 값
+        function print(name){ //name=text1  , 함수일반식
+            let sum = num1 + num2
+            return sum // sum은 이 안에서만 씀
+        }
+        let sumvalue = print(값, 값)
+    
+
+        const fncName = function(num1, num2){
+            let add = num1 + num2
+
+            return txt;
+        }
+
+
+
+        function fncCount(num1,num2){
+            let minus = num1 - num2;
+            return minus;
+        }
+        let view = fncCount(80,60)
+
+
+        //0 function insertName(매개변수){} 함수제작
+        //1 어디에 insert? dom(document object model)조작 => 선택자
+        //2 선택자.innerHTML로 대입
+    </script>
+</body>
+</html>
