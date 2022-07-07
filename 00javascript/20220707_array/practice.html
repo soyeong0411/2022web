@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- value 값은 ""로 지정되어 있음 / inp에 입력하면 value에 저장됨 -->
+    <input type="text" class="inp"> 
+    <button class="btn">insert</button>
+
+    <ul class="view">
+
+    </ul>
+
+    <script>
+        const inpElem = document.querySelector(".inp")
+        const btnElem = document.querySelector(".btn")
+        const viewElem = document.querySelector(".view")
+        
+
+        btnElem.addEventListener("click",function(){
+            // console.log(inpElem.value)
+            // let txt = `<li>${inpElem.value}</li>`;
+            // viewElem.innerHTML = txt
+
+            // viewElem.append(inpElem.value);
+
+
+
+        const node = document.createElement("li") // 요소를 만드는 메소드
+        const textNode = document.createTextNode(inpElme.value) // createElement()를 통해 만든 요소 안에 글자를 넣게 해주는
+        node.appendChild(textNode) // 선택한 요소 안에 자식요소를 추가한다.
+        })
+    </script>
+</body>
+</html>

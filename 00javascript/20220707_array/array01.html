@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../js/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+    <input type="text" class="inp" value="">
+    <button class="btn">insert</button>
+    <button class="allDel">삭제</button>
+
+    <ul class="view">
+
+    </ul>
+
+
+    <script>
+        const arr = ["seoul","busan","daegu"];
+
+        const inpElem = document.querySelector(".inp");
+        const btnElem = document.querySelector(".btn");
+        const viewElem = document.querySelector(".view");
+        
+        btnElem.addEventListener("click",function(){
+            console.log("viewDate = " +inpElem.value);
+            arr.push(inpElem.value)        //arr.push("incheon") // 뒤에 추가
+            console.log(arr)
+            // let text = `<li>${inpElem.value}</li>` // 데이터만 넣는 것(하나만)
+            // viewElem.innerHTML = text
+
+            
+
+            viewElem.append(inpElem.value)  // append는 text의 형태로 들어감
+
+            inpElem.value = ""; //inp안에 입력한것 reset
+        })
+        $(".allDel").click(function(){
+            $(".view").html("")
+        })
+
+
+
+        // jQuery
+
+        $(".btn").click(function(){
+            console.log($(".inp").val())
+            arr.push($(".inp").val())
+
+            let text = `<li>${$(".inp").val()}</li>`;
+
+            $(".view").append(text)
+            $(".inp").val("")
+
+        })
+    </script>
+</body>
+</html>
