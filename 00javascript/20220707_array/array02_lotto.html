@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>array02_lotto</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <script>
+        let list = []; //1~45
+        
+        for(let i=1;i<46;i++){
+            list.push(i)
+        }
+
+        let result = []; // 6개의 숫자
+
+        for(let i=0;i<6;i++){
+
+            let index = Math.floor(Math.random()*list.length); //index 0~44 splice로 인해 43,42,...
+            console.log(index)
+            let num = list[index]; // index 0~44
+            list.splice(index,1);
+            result.push(num)
+        }
+
+        console.log(result)
+        for(let i=0;i<result.length;i++){
+            document.write(result[i]+" ")
+        }
+
+        
+        </script>
+
+</body>
+</html>

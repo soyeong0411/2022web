@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>array01_re</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <input type="text" class="inp">
+    <button class="btn">insert</button>
+
+    <ul class="viewData">
+
+    </ul>
+    <button class="del">all del</button>
+
+    <script>
+
+        let data = [];
+
+        const btnElem = document.querySelector(".btn")
+        const inpElem = document.querySelector(".inp")
+        const viewElem = document.querySelector(".viewData")
+        const delElem = document.querySelector(".del")
+
+        btnElem.addEventListener("click",function(){
+            let value = inpElem.value;
+            data.push(value);
+            inpElem.value = "" // 입력한 후 빈칸으로 reset
+            listData()
+        })
+
+
+        function listData(){
+            let text = ""; //누적
+            for( let i=0;i<data.length;i++){
+                text += `<li>${data[i]} <span>del</span></li>` // text = text + ~
+            }
+            viewElem.innerHTML = text;
+        }
+
+        delElem.addEventListener("click",function(){
+            data = [];
+            listData()
+        })
+    </script>
+</body>
+</html>
