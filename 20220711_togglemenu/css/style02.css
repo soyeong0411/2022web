@@ -1,0 +1,106 @@
+@charset "utf-8";
+/********** css responsive init **********/
+
+body,html{height: 100%;}
+.container{width: 1200px;margin: 0 auto;}
+
+
+/* header에 align-items를 넣으면 a의 포인터가 전체로 잡히지 않음 */
+.header{
+    display: flex;
+    background-color: rgb(233, 186, 186);
+    padding: 16px;
+}
+
+/* flex가 되어있는 상태에서 오른쪽으로 보낼 때! */
+.topMenu{margin-left: auto;}
+
+/* header에 flex를 넣었기 때문에, stretch 되어있는 높이로 지정 됨 */
+/* 이곳에 align-items를 넣어도 전체 포인터x */
+.navbar{display: flex;height: 100%;}
+
+/* a태그에 align-items를 넣어야 전체 포인터 지정가능 */
+.navbar a{
+    display: flex;align-items: center;
+    padding: 0 16px;
+}
+.navbar a i{margin-right: 5px;}
+
+.toggle{
+    width: 45px;background: #fff;
+    border-radius: 10px;
+    display: flex;justify-content: center;
+    align-items: center;
+    position: relative;
+    display: none;
+}
+.toggle .bar{
+    width: 30px;height: 3px;
+    background: #000;
+    border-radius: 2px;
+    transition: .3s;
+}
+.toggle::after,.toggle::before{
+    content: "";display: block;
+    width: 30px;height: 3px;background: #000;
+    position: absolute;
+    transform: translateY(10px);
+    transition: .3s;
+}
+.toggle::before{
+    transform: translateY(-10px);
+}
+
+/* script로 운영 */
+.toggle.active .bar{
+    opacity: 0;
+}
+.toggle.active::after {transform: rotate(45deg);}
+.toggle.active::before{transform: rotate(-45deg);}
+
+
+/********** css responsive **********/
+@media (max-width: 1399px) {
+
+}
+
+@media (max-width: 1199px) {
+    .container{width: 100%;}
+}
+
+@media (max-width: 991px) {
+
+}
+
+@media (max-width: 767px) {
+    /* 스크롤바 안생기고 창안에 가득참 */
+    .container{width: 100%;}
+
+    /* 메뉴가 사라지는 것이 아닌 창에 가득차게 */
+    .topMenu{
+        background: orange;
+        position: fixed;
+        width: 300px;height: 400px;
+        right: -100%;top: 60px;
+        transition: .3s;
+    }
+    /* script로 운영 */
+    .topMenu.view{right: 0;}
+
+
+    .navbar{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .navbar a{height: 40px;}
+
+    .toggle{
+        margin-left: auto;
+        display: flex
+    }
+}
+
+@media (max-width: 575px) {
+
+}

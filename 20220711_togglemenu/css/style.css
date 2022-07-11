@@ -1,0 +1,84 @@
+@charset "utf-8";
+/********** css responsive init **********/
+html,body{height: 100%;}
+body{background: rgb(221, 161, 161);}
+.container{width: 1200px;margin: 0 auto;}
+.navbar{
+    display: flex;padding: 16px 16px;
+    background-color: rgb(224, 230, 190);
+}
+/* topMenu한테만 스트레치 topnav는 스트레치x */
+/* topNav는 스트레치없으므로 height주면 아래에는 다 스트레치 */
+.navbar h1{margin-right: 15px;}
+.topMenu{    margin-left:auto}
+.topNav{
+    display: flex;height: 100%;
+}
+.topNav a{display: flex;align-items: center;
+    padding: 0 20px;
+}
+.topNav a i{margin-right: 5px;}
+.topNav a:hover{background: white;}
+
+.toggleMenu{
+    width: 43px;background: #fff;
+    display: none;
+}
+/* flex일 때 오른쪽으로 붙이려면 margin-left:auto */
+
+
+
+
+.bg-primary{background: blue;}
+
+/********** css responsive **********/
+@media (max-width: 1399px) {
+    body{background: orange;}
+}
+
+@media (max-width: 1199px) {
+
+}
+
+@media (max-width: 991px) {
+    .container{width: 100%;}
+}
+
+@media (max-width: 767px) {
+    body{background: pink;}
+    .container{width: 100%;}
+    /* .topMenu{display: none;} */
+
+    .topMenu{
+        background: pink;
+        position: fixed;
+        width: 100%;height: 100%;
+        right: -100%;top: 0;
+        display: flex;justify-content: center;
+        align-items: center;
+        transition: .3s;
+    }
+    .topMenu.active{right: 0;}
+    /* 위에 flex를 잡아줬기때문에 */
+    .topNav{
+        _display: block;
+        /* 축이 변경됨 */
+        flex-direction: column;
+        _align-items: center;
+        height: initial;}
+    /* topNav height값에 100%를 빼줘야 함 */
+    .topNav a{
+        height: 40px;
+        
+    }
+
+    .toggleMenu{display: flex;
+    margin-left: auto;
+    position: relative;
+    z-index: 1;
+}
+}
+
+@media (max-width: 575px) {
+
+}
