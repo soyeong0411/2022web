@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>script</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <img src="../../images/testimg.jpg" alt="" 
+    onmouseover="this.src='../../images/img1.jpg'" class="testImg"
+    onmouseout="this.src='../../images/testimg.jpg'">
+
+    <script>
+
+        const testImg = document.querySelector(".testImg")
+        function change(){
+            let imgnum = Math.floor(Math.random() * 7 + 1)
+            console.log(imgnum)
+            testImg.src = `../../images/img${imgnum}.jpg`
+        }
+
+        change();
+
+        
+    </script>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium repellendus ipsam labore aliquam quisquam ullam adipisci consectetur corrupti, sunt magni nulla pariatur libero. Ut quaerat nihil quidem, maiores enim magni?
+    <!-- <br><a href="javascript:void(0)">클릭하세요</a> -->
+    <br><a href="#" onclick="return false">클릭하세요</a>
+    <br><a href="#" onclick="mClick(event)">클릭하세요</a>
+    
+    <span class="text">test</span>
+
+    <script>
+        function mClick(e){
+            e.preventDefault();
+        }
+        let text="";
+        for(let i=10;i<=35;i=i+5){
+            text +=`<span style="font-size:${i}px">test</span>`
+        }
+        document.querySelector(".text").innerHTML = text
+    </script>
+
+</body>
+</html>

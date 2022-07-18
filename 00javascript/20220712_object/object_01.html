@@ -18,5 +18,19 @@
         } 
     </script>
 
+    <div class="box" onclick="link('www.naver.com')">
+        naver
+    </div>
+    <div class="box" onclick="link('www.daum.net')">
+        daum
+    </div>
+    <div>
+        <a href="#" onclick="window.history.back()">test</a>
+    </div>
+    <script>
+        function link(plink){
+            window.location.href=`http://${plink}`
+        }
+    </script>
 </body>
 </html>
