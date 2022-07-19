@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pc01</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        .menu ul{
+            display: flex;
+        }
+        .menu ul li{
+            display: flex;justify-content: center;align-items: center;
+            width: 60px;height: 30px;
+            border: 1px solid #000;
+        }
+        .content div{
+            width: 300px;height: 100px;
+            border: 1px solid #000;
+        }
+        .menu .active{
+            background: rgb(161, 62, 62);
+        }
+        .content div{display: none;}
+        .content div:first-child{display: block;}
+
+        .menu1 ul{
+            display: flex;
+        }
+        .menu1 li{
+            width: 200px;height: 30px;
+            background: pink;
+            display: flex;justify-content: center;align-items: center;
+            border: 1px solid rgb(156, 49, 49);
+        }
+
+        .content1 div{
+            width: 800px;height: 200px;
+            border: 1px solid #000;
+        }
+        .menu1 .active{
+            background: rgb(158, 56, 56);
+        }
+        .content1 div{display: none;}
+        .content1 div:first-child{display: block;}
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <ul>
+            <li class="active">tab1</li>
+            <li>tab2</li>
+            <li>tab3</li>
+        </ul>
+    </div>
+    <div class="content">
+        <div>Lorem ipsum dolor sit amet.</div>
+        <div>Lorem ipsum dolor sit amet.</div>
+        <div>Lorem ipsum dolor sit amet.</div>
+    </div>
+
+    <div class="menu1">
+        <ul>
+            <li class="active">m1</li>
+            <li>m2</li>
+            <li>m3</li>
+            <li>m4</li>
+        </ul>
+    </div>
+    <div class="content1">
+        <div>1Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, exercitationem?</div>
+        <div>2Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, exercitationem?</div>
+        <div>3Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, exercitationem?</div>
+        <div>4Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, exercitationem?</div>
+    </div>
+
+    <script>
+
+        $(".menu li").click(function(){
+            $(".menu li").removeClass("active")
+            $(this).addClass("active")
+
+            $(".content div").hide();
+            console.log($(this).index())
+            $(".content div").eq($(this).index()).fadeIn();
+        })
+
+        $(".menu1 li").click(function(){
+            $(".menu1 li").removeClass("active")
+            $(this).addClass("active")
+
+            $(".content1 div").hide();
+            $(".content1 div").eq($(this).index()).fadeIn()
+
+        })
+    </script>
+</body>
+</html>

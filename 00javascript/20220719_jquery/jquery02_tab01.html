@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery02_tab01</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        .wrap ul{
+            display: flex;
+        }
+        .wrap ul li{cursor: pointer;}
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <ul>
+            <li><img src="../../images/btn1_1.jpg" alt=""></li>
+            <li><img src="../../images/btn2_1.jpg" alt=""></li>
+            <li><img src="../../images/btn3_1.jpg" alt=""></li>
+            <li><img src="../../images/btn4_1.jpg" alt=""></li>
+        </ul>
+        <div class="images">
+            <img src="../../images/spring.jpg" alt="">
+        </div>    
+
+        
+    </div>
+
+    <script>
+        // $(".wrap > ul > li").eq(0).click(function(){
+        //     $(".images > img").attr("src","../../images/spring.jpg")
+        // })
+        // $(".wrap > ul > li").eq(1).click(function(){
+        //     $(".images > img").attr("src","../../images/summer.jpg")
+        // })
+        // $(".wrap > ul > li").eq(2).click(function(){
+        //     $(".images > img").attr("src","../../images/fall.jpg")
+        // })
+        // $(".wrap > ul > li").eq(3).click(function(){
+        //     $(".images > img").attr("src","../../images/winter.jpg")
+        // })
+
+        const img = ["spring","summer","fall","winter"];
+
+        // for(let i=0;img.length>i;i++){  
+        //     $(".wrap > ul > li").eq(i).click(function(){
+        //         $(".images > img").attr("src",`../../images/${img[i]}.jpg`) //attr 하나일 때는 get, 두개일 때는 set(변경) 
+        //     })
+        // }
+
+        // script
+        // const liElem = document.querySelectorAll(".wrap > ul > li")
+        // const imgElem = document.querySelector(".images > img")
+
+        // for(let i=0;img.length>i;i++){
+        //     liElem.addEventListener("click",function(){
+        //         imgElem.setAttribute("src",`../../images/${img[i]}.jpg`)
+        //     })
+        // }
+
+        $(".wrap li").click(function(){
+            const $list = $(".wrap li")
+            console.log($(this).index()) //this 안에 있는 html을 출력
+            $(".images > img").attr("src",`../../images/${img[$(this).index()]}.jpg`) //$(this).index()는 자신이 몇번째인지 알려고 할 때
+        })
+
+
+        $(".menu>li").click(function(){
+            $(".menu>li").removeClass("active");
+            $(this).addClass("active")
+            let i = $(this).index();
+            $(".content div").hide().eq(i).show(); //eq는 몇번째를 선택
+            //$(".content div").eq(i).show();
+        })
+        //$this는 배열형태
+
+
+
+        
+    </script>
+
+</body>
+</html>

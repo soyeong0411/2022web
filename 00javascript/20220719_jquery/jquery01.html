@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery01</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        .box{width: 100px;height: 100px;background: orange;}
+    </style>
+</head>
+<body>
+    <button class="btn1">삭제</button>
+    <button class="btn2">보기</button>
+    <div class="box"></div>
+    <div class="box"></div>
+
+    <script>
+        const btn1 = document.querySelector(".btn1");
+        const btn2 = document.querySelector(".btn2");
+        const box = document.querySelectorAll(".box")
+        
+        console.log(box.length)
+
+        // btn1.addEventListener("click",function(){
+
+        //     for(let i=0;box.length>i;i++){
+        //     box[i].style.display = "none";
+        //     }
+        // })
+
+        // btn2.addEventListener("click",function(){
+
+        //     for(let i=0;box.length>i;i++){
+        //     box[i].style.display = "block";
+        //     }
+        // })
+
+        $(".btn1").click(function(){
+            for(let i=0;i<$(".box").length;i++){
+                $(".box").eq(i).slideUp(400*i) // hide,show,fadeIn,fadeOut / eq()는 박스의 몇번째를 선택하는 것을 뜻함
+            }        
+        })
+        $(".btn2").click(function(){
+            for(let i=0;i<$(".box").length;i++){
+                $(".box").eq(i).slideDown(400*i)
+            }        
+        })
+
+    </script>
+</body>
+</html>
