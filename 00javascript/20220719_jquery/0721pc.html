@@ -4,39 +4,38 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>jquery02_tab02</title>
+    <title>0721pc</title>
     <link rel="stylesheet" href="../../css/reset.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <style>
-        .tab{
-            display: flex;width: 400px;height: 50px;
-        }
-        .tab li{
-            /* flex-grow: 1; */
+        .tab ul{display: flex;width: 400px;height: 50px;}
+        .tab ul li{
+            /* grow는 부모크기의 따라 자식이 넓혀짐 */
             flex: 1 1 auto;
-            background: pink;
             display: flex;justify-content: center;align-items: center;
         }
-        .tab li.active{background: rgb(219, 164, 164);}
 
-        /* position:fixed bottom 은 멀리 떨어뜨릴때 */
-        .content{width: 400px;overflow: hidden;position: fixed;bottom: 0;}
+        .content li img{width: 400px;}
+        .content{
+            width: 400px;overflow: hidden;
+        }
+        .content ul{display: flex;width: 1200px;
+            position: relative;transition: .3s;}
 
-        .content ul{
-            width: 1200px;display: flex;
-            position: absolute;
-            transition: .3s;}
-        .content img{width: 400px;}
     </style>
 </head>
 <body>
-    <ul class="tab">
-        <li class="active">tab1</li>
-        <li>tab2</li>
-        <li>tab3</li>
-    </ul>
+    <div class="tab">
+        <ul>
+            <li>tab1</li>
+            <li>tab2</li>
+            <li>tab3</li>
+        </ul>
+    </div>
+    <!-- /* content는 li width값 지정(보여질 width값), overflow:hidden값을 지정 */ -->
     <div class="content">
+        <!-- ul은 이미지 합 총 width값 지정 및 position값 지정(옮겨줘야 하므로) -->
         <ul>
             <li><img src="../../images/pc01.jpg" alt=""></li>
             <li><img src="../../images/pc02.jpg" alt=""></li>
@@ -44,15 +43,16 @@
         </ul>
     </div>
     <script>
-        $(".tab li").click(function(){
-            let i = $(this).index();
 
-            $(".tab li").removeClass("active")
-            $(this).addClass("active");        // this공통어라 "" 안씀
-
-            // $(".content ul").css("left",-i*400)  // css({#.#})
-            $(".content ul").stop().animate({left:-i*400},200) // duration 0.3이 300 / %는 ""안에 
+        $(".tab li").click(function(){     //class name앞에 반드시 "."!!!!!!
+            let i = $(this).index()
+            $(".content ul").css("left",-i*400)
         })
+
     </script>
+
+
+<script src="js/script.js"></script>
+
 </body>
 </html>

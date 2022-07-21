@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery03_modal</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        html,body{height: 100%;}
+        body{display: flex;justify-content: center;align-items: center;}
+
+        .layer{width: 600px;display: flex;gap:10px}
+        .layer li{flex-grow: 1;}
+        .layer li img{width: 100%;}
+
+        .grayLayer{
+            position: fixed;
+            /* width: 100%;height: 100%; */
+            left: 0;right: 0;top: 0;bottom: 0;
+            background: rgba(0,0,0,.5);
+            display: none;justify-content: center;align-items: center; 
+        }   /* display는 click하면 flex로 초기에는 none처리*/
+
+        /* xicon에 position을 주므로 */
+        .overlayer{position: relative;} 
+        .xicon{position: absolute;right: 0;width: 40px;height: 40px;
+        display: flex;justify-content: center;align-items: center;}
+    </style>
+</head>
+<body>
+    <ul class="layer">
+        <li><a href="../../images/img1.jpg" class="modal"><img src="../../images/img1.jpg" alt=""></a></li>
+        <li><a href="../../images/img2.jpg" class="modal"><img src="../../images/img2.jpg" alt=""></a></li>
+        <li><a href="../../images/img3.jpg" class="modal"><img src="../../images/img3.jpg" alt=""></a></li>
+    </ul>
+    <div class="grayLayer">
+        <div class="overlayer">
+            <div class="xicon"><i class="fa-solid fa-xmark"></i></div>
+            <img src="../../images/img1.jpg" alt="">
+        </div>
+    </div>
+    <script>
+        // $(".modal").click(function(e){
+        //     e.preventDefault();
+        //     let aModal = $(this).attr("href"); //get
+        //     console.log(aModal)
+        //     $(".grayLayer").css("display","flex")
+        //     $(".overlayer img").attr("src",aModal) // attr set
+        // })
+        // $(".xicon").click(function(){
+        //     // $(".grayLayer").css("display","none")
+        //     $(this).parent().parent().hide();
+        // })
+        // $(".grayLayer").click(function(){    //전체
+        //     $(this).hide();
+        // })
+
+
+        $(".modal").click(function(e){
+            e.preventDefault();
+            let aModal = $(this).attr("href")
+            
+            $(".grayLayer").css("display","flex")
+            $(".overlayer img").attr("src",aModal) //href값을 src에 넣어라
+        })
+        $(".xicon").click(function(){
+            // $(".grayLayer").css("display","none")
+            $(this).parent().parent().hide();
+        })
+
+    </script>
+
+</body>
+</html>
