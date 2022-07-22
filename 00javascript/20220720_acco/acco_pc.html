@@ -11,25 +11,31 @@
     <style>
         body,html{height: 100%;}
 
-        body{
-            display: flex;justify-content: center;align-items: center;
+        body{display: flex;justify-content: center;align-items: center;}
+
+        .sub{display: none;}
+        .menuWrap{width: 200px;}
+        .menuWrap .menu>li>a{
+            display: flex;justify-content: space-between;
+            align-items: center;padding: 0 16px;
+            background: #000;
+            
         }
-        .menu>li{
-            width: 150px;height: 40px;
-            border: 1px solid #000;
+        .menuWrap .menu>li{}
+
+        .menu>li>a.active i{transform: rotate(180deg);}
+
+        .menu>li .sub a{
+            display: block;line-height: 30px;
+            text-align: center;
         }
-        .menu>li>a{
-            display: flex;justify-content: center;align-items: center;
-        }
-        .menu>li .sub{
-            display: none;
-        }
+
     </style>
 </head>
 <body>
     <div class="menuWrap">
         <ul class="menu">
-            <li><a href="#">m01</a>   
+            <li><a href="#">m01 <i class="fa-solid fa-circle-chevron-up"></i></a>   
                 <ul class="sub">
                     <li><a href="#">m01_01</a></li>
                     <li><a href="#">m01_02</a></li>
@@ -38,7 +44,7 @@
                     <li><a href="#">m01_05</a></li>
                 </ul>
             </li>
-            <li><a href="#">m02</a>
+            <li><a href="#">m02 <i class="fa-solid fa-circle-chevron-up"></i></a>
                 <ul class="sub">
                     <li><a href="#">m02_01</a></li>
                     <li><a href="#">m02_02</a></li>
@@ -47,7 +53,7 @@
                     <li><a href="#">m02_05</a></li>
                 </ul>
             </li>
-            <li><a href="#">m03</a>
+            <li><a href="#">m03 <i class="fa-solid fa-circle-chevron-up"></i></a>
                 <ul class="sub">
                     <li><a href="#">m03_01</a></li>
                     <li><a href="#">m03_02</a></li>
@@ -59,5 +65,19 @@
         </ul>
     </div>
 
+    <script>
+        $(".menu>li>a").click(function(e){
+            e.preventDefault();
+
+            $(".menu>li>a").parent().find(".sub").slideUp();
+            if($(this).hasClass("active")){
+                $(".menu>li>a").removeClass("active")
+            }else{
+                $(this).parent().find(".sub").slideDown()
+                $(this).addClass("active")
+                $(".menu>li>a").removeClass("active")
+            }
+        })
+    </script>
 </body>
 </html>
