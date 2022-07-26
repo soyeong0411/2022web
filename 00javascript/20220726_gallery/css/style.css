@@ -1,0 +1,15 @@
+@charset "utf-8";
+
+#gallery{width: 824px;margin: 0 auto;}
+#image{width: 760px;margin: 0 auto;margin-bottom: 10px;}
+
+/* 자기자신만 보여주기 위해 나머지는 display none */
+#image > p{display: none;}
+
+#thumbnail{display: flex;}
+#thumbnail .left,#thumbnail .right{width: 32px;
+display: flex;justify-content: center;align-items: center;
+cursor: pointer;}
+#thumbnail .container{width: 760px;overflow: hidden;}
+.itemWrap li{float: left;margin-right: 8px;cursor: pointer;}
+.itemWrap{width: 2280px;position: relative;left: 0;}
