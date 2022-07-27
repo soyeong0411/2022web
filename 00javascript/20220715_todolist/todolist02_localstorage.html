@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todolist02_localstorage</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <input type="text" class="inp">
+    <button class="btn1">오늘할일</button>
+    <button class="btn2">전체삭제</button>
+
+    <ul class="listView">
+
+    </ul>
+
+    <script>
+        let listData = [];
+
+        // init
+        const inp = document.querySelector(".inp");
+        const btn1 = document.querySelector(".btn1");
+        const btn2 = document.querySelector(".btn2");
+        const listView = document.querySelector(".listView");
+        
+
+        btn1.addEventListener("click",function(){
+            let value = inp.value;
+
+            if(value != ""){
+                listData.push(value);     //array에서 사용하는 함수
+                localStorage.setItem(value,value); // setItem(keyName, keyValue) 
+                inp.value = '' // 입력 후 빈칸
+            }else{
+                alert("오늘의 할일을 입력하세요.")
+            }
+            viewData();
+        })
+
+
+        // screen
+           
+        function viewData(){
+            // for(let i=0;i<listData.length;i++){}
+            listData = [];
+
+            for(let i=0;i<localStorage.length;i++){
+                listData.push(localStorage.key(i))   // key값을 가져와서 value를 넣음
+            }
+        
+            let viewList = ""    // 함수안에 넣으면 계속 초기가 되므로 밖에 선언
+            listData.forEach(function(item,index){ // item은 listData / forEach는 배열의 첫번째부터 마지막까지 반복하면서 item을 꺼낼 수 있음 -> 배열에서 for를 돌릴 때
+                console.log(item,listData[index])
+                viewList += `<li>${item}</li>`;
+            })
+            
+            listView.innerHTML = viewList
+        }
+
+        viewData();  // 실행
+
+            btn2.addEventListener("click",function(){
+                listData = [];
+                viewData = "";
+            })
+    </script>
+
+</body>
+</html>
