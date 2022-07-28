@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>slide01_basic</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        .container,.container2{width: 1000px;margin: 0 auto;overflow: hidden;position: relative;}
+        .slide{width: 4000px;display: flex;position: relative;left: 0px;        }
+
+        .container2{height: 400px;overflow: hidden;position: relative;}
+        .slide2{height: 1600px;top:0;position: relative;}
+
+        .container3{width: 1000px;margin: 0 auto;height: 400px;}
+        .slide3{position: relative;}
+        .slide3 div{position: absolute;opacity: 0;}
+        .slide3 div:nth-child(1){opacity: 1;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="slide">
+            <div><img src="../../images/images01.jpg" alt="0"></div>
+            <div><img src="../../images/images02.jpg" alt="1"></div>
+            <div><img src="../../images/images03.jpg" alt="2"></div>
+            <div><img src="../../images/images01.jpg" alt="3"></div>
+        </div>
+    </div>
+    <div class="container2">
+        <div class="slide2">
+            <div><img src="../../images/images01.jpg" alt="0"></div>
+            <div><img src="../../images/images02.jpg" alt="1"></div>
+            <div><img src="../../images/images03.jpg" alt="2"></div>
+            <div><img src="../../images/images01.jpg" alt="3"></div>
+        </div>
+    </div>
+    <div class="container3">
+        <div class="slide3">
+            <div><img src="../../images/images01.jpg" alt="0"></div>
+            <div><img src="../../images/images02.jpg" alt="1"></div>
+            <div><img src="../../images/images03.jpg" alt="2"></div>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- <div class="box">0</div> -->
+    <script>
+        // let num = 0; 
+        // setInterval(function(){
+        //     num++;
+        //     console.log(num)
+        //     document.querySelector(".box").innerHTML = num
+        // },1000)
+
+        // setInterval(slideNum,3000);
+
+        // let num = 0;
+
+        // function slideNum(){
+        //     num++;
+        //     if(num == 4){
+        //         num = 1;             // 0을 넣으면 1 이미지가 6초가 보여짐
+        //         $(".slide").css("left",0)
+        //         $(".slide2").css("top",0)
+        //     }
+        //     console.log(num)
+        //     // $(".slide").css("left",num*-1000);
+        //     $(".slide").animate({left:num*-1000},500) // -4000px끝으로가면 머무름(-4000은 암것도 나타나지않음)
+        //     $(".slide2").animate({top:num*-400},500)
+        // }
+
+
+
+
+        //fade in
+         setInterval(slideNum,3000);
+
+            let num = 0;
+            let view = 1;  // z-index
+            function slideNum(){
+                num++;
+                if(num == $(".slide3>div").length){
+                    num=0;
+                }
+                $(".slide3>div").eq(num).css({"z-index":view++,opacity:0}).stop().animate({opacity:1},500)
+            }
+    </script>
+
+</body>
+</html>
