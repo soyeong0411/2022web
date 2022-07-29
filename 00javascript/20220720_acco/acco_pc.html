@@ -70,12 +70,13 @@
             e.preventDefault();
 
             $(".menu>li>a").parent().find(".sub").slideUp();
-            if($(this).hasClass("active")){
-                $(".menu>li>a").removeClass("active")
+           if($(this).hasClass("active")){
+
+                $(".menu>li>a").removeClass("active");
             }else{
                 $(this).parent().find(".sub").slideDown()
-                $(this).addClass("active")
                 $(".menu>li>a").removeClass("active")
+                $(this).addClass("active")
             }
         })
     </script>

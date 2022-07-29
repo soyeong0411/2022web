@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0729</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        .container{width: 1000px;overflow: hidden;position: relative;}
+        .slide{
+            width: 3000px;left: 0;position: relative;
+            display: flex;justify-content: center;align-items: center;}
+        
+
+    </style>
+</head>
+<body>
+    <!-- container는 hidden -->
+    <div class="container">
+        <!-- slide는 전체 width 길이값 전체 길이값으로 slide 운영-->
+        <div class="slide">
+            <div><img src="../../images/images01.jpg" alt="0"></div>
+            <div><img src="../../images/images02.jpg" alt="1"></div>
+            <div><img src="../../images/images03.jpg" alt="2"></div>
+        </div>
+    </div>
+
+    <script>
+
+        let num = 0;
+        setInterval(Number,3000) // 변수와 함수이름이 겹치면 안됨
+
+        function Number(){
+            num++;
+            if(num == 3){
+                num = 0;
+                $(".slide").css("left",0)
+            }
+            $(".slide").animate({left:num*-1000},500)
+        }
+
+
+    </script>
+</body>
+</html>
