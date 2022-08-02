@@ -23,6 +23,7 @@ h1{text-align: center;margin-bottom: 10px;}
     opacity: 0;transition: .3s;
 }
 .navbar ul li:hover::after{opacity: 1;}
+.navbar ul li.active::after{opacity: 1;}
 
 .navbar{position: relative;}
 .bar{
@@ -37,10 +38,18 @@ h1{text-align: center;margin-bottom: 10px;}
     display: flex;justify-content: center;align-items: center;
 }
 
+/* subpage */
+.subVisual{height: 200px;background: violet;
+    display: flex;justify-content: center;align-items: center;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.subVisual.company{background-image: url(../../images/pc01.jpg);}
+.subVisual h2{color:white;text-shadow: 0 0 10px rgba(0, 0, 0, .5);}
 
-
-
-
+.subVisual.product{background-image: url(../../images/pc02.jpg);}
+.subVisual.navigation{background-image: url(../../images/pc03.jpg);}
 
 
 /********** css responsive **********/
