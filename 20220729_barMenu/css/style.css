@@ -38,6 +38,28 @@ h1{text-align: center;margin-bottom: 10px;}
     display: flex;justify-content: center;align-items: center;
 }
 
+.contents{display: flex;}
+.contents li{flex:1 1 25%}
+.contents li:nth-child(2n){
+    background: orange;
+}
+.contents li a{display: flex;padding: 30px;
+    justify-content: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* subpage */
 .subVisual{height: 200px;background: violet;
     display: flex;justify-content: center;align-items: center;
@@ -50,6 +72,26 @@ h1{text-align: center;margin-bottom: 10px;}
 
 .subVisual.product{background-image: url(../../images/pc02.jpg);}
 .subVisual.navigation{background-image: url(../../images/pc03.jpg);}
+
+
+.sub .tab{display: flex;}
+.sub .tab li{
+    flex:1 1 25%;height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: lightgray;
+    cursor: pointer;
+}
+.sub .tab li.active{background: skyblue;}
+.sub .content div{display: none;
+border: 1px solid #000;padding: 30px;
+border-top: 0 none;}
+.sub .content div:nth-child(1){display: block;}
+
+
+
+
 
 
 /********** css responsive **********/

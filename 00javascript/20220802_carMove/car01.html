@@ -57,15 +57,27 @@
         // },300)
 
         //init
-        const nStart = $(".car").position().left;    // 50
+        const nStart = $(".car").position().left;    // 50 /position은 부모가 있는 지역 offset은 부모가 없으면 전역
         const nEnd = nStart + $(".bar").width() - $(".car").width() // 50 + ( 500 - 120 )
         let nStep = 2;
         let current = nStart;
-        let timeId;   // 
+        let timeId = 0;
+        let move = true;
 
         //event
-        timeId = setInterval(carMove,30);  // script
-
+        //timeId = setInterval(carMove,30);  // script
+        $(".btn1").click(function(){
+            if(move == true){
+                timeId = setInterval(carMove,30)
+                console.log(timeId)
+                move = !move; // move가 false로 바뀜
+            }
+        })
+        $(".btn2").click(function(){
+            clearInterval(timeId)
+            //timeId = 0;
+            move = !move // true로 바뀜
+        })
 
         //function
         function carMove(){
