@@ -27,9 +27,52 @@
     <div class="subVisual company" style="background-image: url(../images/pc01.jpg);">
         <h2>company</h2>
     </div>
+    <div class="container sub">
+        <ul class="tab">
+            <li class="active">tab01</li>
+            <li>tab02</li>
+            <li>tab03</li>
+            <li>tab04</li>
+        </ul>
+        <div class="content">
+            <div>1Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nobis saepe atque tenetur iste quia odit odio maxime quos soluta quisquam!</div>
+            <div>2Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nobis saepe atque tenetur iste quia odit odio maxime quos soluta quisquam!</div>
+            <div>3Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nobis saepe atque tenetur iste quia odit odio maxime quos soluta quisquam!</div>
+            <div>4Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nobis saepe atque tenetur iste quia odit odio maxime quos soluta quisquam!</div>
+        </div>
+    </div>
     <script src="js/script.js"></script>
     <script>
-        nowMenu(0);
+        nowMenu(0);//depth1
+
+        //depth2
+        let params = new URLSearchParams(location.search); // location.search은 쿼리 스트링문을 가져옴??
+        console.log(params.get("submenu"))
+
+        
+
+        function tab(){
+            $(".tab li").click(function(){
+            let i = $(this).index();
+            $(".tab li").removeClass("active");
+            $(this).addClass("active")
+
+            $(".content div").hide().eq(i).show();
+            })
+        }
+
+        function views(i){
+
+            if(i != null){
+            $(".tab li").removeClass("active").eq(i).addClass("active");
+            $(".content>div").hide().eq(i).show();
+
+            tab()
+        }else{
+            tab()
+        }
+        }
+        views(params.get("submenu"))
     </script>
 
 </body>
