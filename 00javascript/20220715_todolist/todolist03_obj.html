@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todolist03_obj</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        .listView{width: 400px;margin: 0 auto;}
+        .listView li{height: 40px;position: relative;margin-bottom: 3px;}
+        .listView li .item{
+            height: 100%;background: skyblue;
+            display: flex;align-items: center;
+            padding-left: 10px;
+        }
+        .listView li .iconWrap{
+            position: absolute;right: 5px;top: 0;background: pink;
+            display: flex;justify-content: center;align-items: center;
+        }
+        .listView li .iconWrap i{
+            width: 30px;height: 30px;
+            display: flex;justify-content: center;align-items: center;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <ul class="listView"></ul>  <!-- 여기에 넣음 -->
+    <script>
+        let listData = [{todo:"오늘의 할일1",done:false},   //0
+                        {todo:"오늘의 할일2",done:true},    //1
+                        {todo:"오늘의 할일3",done:false},   //2
+                        {todo:"오늘의 할일4",done:true},    //3
+                        {todo:"오늘의 할일5",done:false},]  //4
+        //listData[0].todo / listData[0]["todo"] // 출력할 때
+
+
+        // let listData = [
+        //     '오늘의 할일1',
+        //     '오늘의 할일2',
+        //     '오늘의 할일3',
+        //     '오늘의 할일4',
+        //     '오늘의 할일5',
+        // ]
+
+        let objData = {eng:100,math:90}
+
+        const listView = document.querySelector(".listView")
+
+        function view(){
+            let viewList = "";
+
+            listData.forEach(function(item,index){ 
+                viewList += `<li>`;
+
+            if( listData[index].done == true){
+                viewList += `<div class="item active">${listData[index].todo}</div>`
+            }else{
+                viewList += `<div class="item">${listData[index].todo}</div>`
+            }
+
+            viewList += `<div class="iconWrap">
+                            <i class="fa-solid fa-trash" onclick=""></i>
+                            <i class="fa-solid fa-carrot" onclick=""></i>
+                            <i class="fa-solid fa-circle-check" onclick=""></i>
+                            <i class="fa-solid fa-rectangle-xmark" onclick=""></i>
+                        </div>
+                    </li>`
+
+            })
+            listView.innerHTML = viewList
+        }
+
+
+
+            // #forEach
+            // listData.forEach(function(item,index){  // todo(item)은 배열element 
+            //     console.log(listData[index]) 
+            //     viewList += `<li>${item}</li>`
+            // }
+            
+            // listView.innerHTML = viewList
+         
+
+            // #for
+            // let viewList = "";
+            // for(let i=0;i<listData.length;i++){
+            //     console.log(listData[i]);
+            //     //viewList = viewList + "<li>" + listData[i] + "</li>"   // #1
+            //     viewList += `<li>${listData[i]}</li>` // #2
+            // }
+            // listView.innerHTML = viewList
+
+            
+        
+        view(); // 호출
+
+
+
+    </script>
+
+
+
+</body>
+</html>
