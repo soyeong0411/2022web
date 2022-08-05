@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0805pc</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        .menu{width: 400px;margin: 0 auto;}
+        .menu li{
+            height: 40px; background: orange;
+            display: flex;align-items: center;padding: 0 0 0 5px;
+        }
+        .menu li .active{width: 100%;background: lightgray;height: 100%;}
+
+    </style>
+</head>
+<body>
+
+    <ul class="menu">
+
+    </ul>
+
+    <script>
+        const menu = document.querySelector(".menu")
+
+        const data = [
+            {
+                todo:"오늘의 할일1",
+                done:true
+            },
+            {
+                todo:"오늘의 할일2",
+                done:true
+            },
+            {
+                todo:"오늘의 할일3",
+                done:true
+            },
+            {
+                todo:"오늘의 할일4",
+                done:true
+            },
+        ]
+
+        function view(){
+            let viewList = ""
+
+            data.forEach(function(item,i){
+                viewList += `<li>`
+
+                if(data[i].done == true){
+                    viewList += `<div class = "active" onclick="">${data[i].todo}</div>`
+                }else{
+                    viewList += `<div class = "" onclick="">${data[i].todo}</div>`
+                }
+                
+            })
+            menu.innerHTML = viewList;
+
+        }
+        view();
+        
+
+    </script>
+</body>
+</html>

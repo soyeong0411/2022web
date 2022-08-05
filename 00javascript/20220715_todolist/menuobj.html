@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>menuobj</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        .menu{width: 1000px;margin: 0 auto;}
+        .submenu{display: none;}
+        .menu{display: flex;height: 40px;}
+        .menu>li{flex:1 1 25%}
+        .menu>li>a{display: flex;height: 100%;justify-content: center;
+        align-items: center;}
+        .menu>li:hover{background: lightgray;}
+
+        .menu>li:hover .submenu{display: block;}
+
+        .submenu li{height: 40px;background: lightgray;}
+        .submenu li a{display: flex;height: 100%;justify-content: center;align-items: center;}
+        .submenu li:hover{background: gray;}
+    </style>
+
+</head>
+<body>
+
+    <ul class="menu">
+
+    </ul>
+    <script>
+        const menuData = [
+            // dep1 menu / url - submenu / url / 하나가 item
+            {
+                menu:"company",
+                href:"#1",
+                sub:null
+            },
+            {
+                menu:"product",
+                href:"#2",
+                sub:[
+                    {
+                        smenu:"pro1",
+                        href:"#pro1"
+                    },
+                    {
+                        smenu:"pro2",
+                        href:"#pro2"
+                    },
+                    {
+                        smenu:"pro3",
+                        href:"#pro3"
+                    },
+                    {
+                        smenu:"pro4",
+                        href:"#pro4"
+                    },
+                ]
+            },
+            {
+                menu:"community",
+                href:"#3",
+                sub:[
+                    {
+                        smenu:"com1",
+                        href:"#com1"
+                    },
+                    {
+                        smenu:"com2",
+                        href:"#com2"
+                    },
+                ]
+            },
+            {
+                menu:"board",
+                href:"#4",
+                sub:[
+                    {
+                        smenu:"board1",
+                        href:"#board1"
+                    },
+                    {
+                        smenu:"board2",
+                        href:"#board2"
+                    },
+                ]
+            },
+            {
+                menu:"online",
+                href:"#5",
+                sub:null
+            },
+        ]
+
+        let menuLi = document.querySelector(".menu");
+
+        let listView ="";
+        menuData.forEach(function(item,index){
+            listView += `<li>
+                            <a href="${item.href}">${item.menu}</a>`
+                if(item.sub != null){
+                    listView += `<ul class="submenu">`
+                        item.sub.forEach(function(itemSub){
+                            listView += `<li>
+                                            <a href="${itemSub.href}">${itemSub.smenu}</a>
+                                        </li>`
+                        })
+                    listView +=`</ul>`
+                }
+                 
+            //console.log(item.menu)
+            //console.log(menuData[index].menu)
+            //console.log(menuData[index]["menu"])  // 3개가 모두 console창에 menu를 출력
+
+
+        })
+        menuLi.innerHTML = listView;
+    </script>
+</body>
+</html>

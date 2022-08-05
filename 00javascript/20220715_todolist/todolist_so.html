@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todolist_so</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        .container{width: 500px;margin: 0 auto;}
+
+        .title h1{text-align: center;margin-bottom: 15px;}
+        .content{
+            background: rgb(241, 204, 156);height: 500px;
+            display: flex;justify-content: center;align-items: center;}
+        .todoWrap{width: 450px;height: 450px;border: 1px solid rgb(73, 49, 13);}
+
+        .todoList li .active{text-decoration:line-through;}
+        .todoList{padding: 20px 25px;}
+        .todoList li{
+            position: relative;height: 40px;font-size: 18px;
+            display: flex;align-items: center;
+        }
+        .todoList li::after{content: "";clear: both;display: block;
+            width: 400px;height: 1px;background: rgb(184, 136, 64);
+            position: absolute;bottom: 0;
+        }
+        
+        .todoList li .iconWrap{position: absolute;right: 0;}
+        .todoList li .iconWrap i{font-size: 18px;color:rgb(247, 107, 56)}
+
+        .insert_todo{width: 400px;height: 30px;
+            display: flex;gap:5px}
+        .insert_todo .inp_todo{
+            flex-grow: 1;border-radius: 10px;border: 1px solid rgb(112, 79, 21);}
+        .inp_todo:focus{outline: none;}
+
+        .btn_todo{width: 80px;background: rgb(188, 126, 81);}
+
+    </style>
+</head>
+<body>
+    <div class="title container">
+        <h1>ToDoList</h1>
+    </div>
+    <div class="content container">
+        <div class="todoWrap">
+            <div class="todoList">
+                <div class="insert_todo">
+                    <input type="text" class="inp_todo">
+                    <button class="btn_todo">오늘의 할일</button>
+                </div>
+
+                <ul class="list">
+    
+                </ul>
+            </div>    
+        </div>
+            
+    </div>
+
+    <script>
+
+        const list = document.querySelector(".list");
+        const inptodo = document.querySelector(".inp_todo");
+        const btntodo = document.querySelector(".btn_todo");
+
+        const tododata = [
+            {
+                todo:"todolist1",
+                done:true
+            },
+            {
+                todo:"todolist2",
+                done:false
+            },
+            {
+                todo:"todolist3",
+                done:false
+            },
+            {
+                todo:"todolist4",
+                done:true
+            },
+        ]
+
+        function view(){
+            let viewList = "";
+
+                for(let i=0;i<tododata.length;i++){
+                    viewList += `<li>`;
+
+                    if( tododata[i].done == true){
+                        viewList += `<div class="active">${tododata[i].todo}</div>`
+                    }else{
+                        viewList += `<div class="">${tododata[i].todo}</div>`
+                    }
+
+                    viewList += `<div class="iconWrap">`
+                    
+                    if( tododata[i].done == true){
+                        viewList += `<i class="fa-solid fa-circle-check" onclick="done(${i})"></i>
+                        `;
+                    }else{
+                        viewList += `<i class="fa-solid fa-circle-xmark" onclick="done(${i})"></i>
+                        `;
+                    }
+
+                    viewList += `<i class="fa-solid fa-circle-exclamation" onclick=""></i>
+                                <i class="fa-solid fa-circle-minus" onclick="del(${i})"></i>`;
+
+                    viewList += `</li>
+                                </div>`;
+                }
+            list.innerHTML = viewList;
+        }
+        view();
+
+        function done(index){
+           tododata[index].done = !tododata[index].done; // true 한 번 누르면 바뀌지 않으니까
+           view();
+        }
+
+        function del(index){
+            tododata.splice(index,1)
+            view();
+        }
+
+        // # 버튼을 클릭하면 값을 입력
+        btntodo.addEventListener("click",function(){
+            let value = {"todo":inptodo.value,"done":false}
+
+            tododata.push(value);
+            view();
+            inptodo.value = ""
+        })
+
+
+    </script>
+
+
+
+
+
+
+</body>
+</html>
