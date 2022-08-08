@@ -98,7 +98,7 @@
         let menuLi = document.querySelector(".menu");
 
         let listView ="";
-        menuData.forEach(function(item,index){
+        menuData.forEach(function(item,index){                         // menuData에 item, index를 뜻함
             listView += `<li>
                             <a href="${item.href}">${item.menu}</a>`
                 if(item.sub != null){

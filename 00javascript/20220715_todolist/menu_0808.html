@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>menu_0808</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        .menu{display: flex;}
+        .submenu{display: none;}
+        .menu li:hover .submenu{display: block;}
+    </style>
+</head>
+<body>
+
+    <ul class="menu">
+
+    </ul>
+    <script>
+
+        const menu = document.querySelector(".menu")
+
+
+        let menuData = [
+            {
+                menu:"menu1",
+                href:"#1",
+                sub:null
+            },
+            {
+                menu:"menu2",
+                href:"#2",
+                sub:[
+                    {
+                        smenu:"sm1",
+                        href:"#sm1"
+                    },
+                    {
+                        smenu:"sm2",
+                        href:"#sm2"
+                    },
+                    {
+                        smenu:"sm3",
+                        href:"#sm3"
+                    },
+                ]
+            },
+            {
+                menu:"menu3",
+                href:"#3",
+                sub:[
+                    {
+                        smenu:"sm1",
+                        href:"#sm1"
+                    },
+                    {
+                        smenu:"sm2",
+                        href:"#sm2"
+                    },
+                    {
+                        smenu:"sm3",
+                        href:"#sm3"
+                    },
+                    {
+                        smenu:"sm4",
+                        href:"#sm4"
+                    },
+                ]
+            },
+        ]
+
+        let listView = ""; // 안에 있으면 초기화
+        menuData.forEach(function(item,index){
+
+            listView += `<li><a href="${item.href}">${item.menu}</a>`
+
+                if(item.sub != null){
+                    listView += `<ul class="submenu">`
+                        item.sub.forEach(function(sub){
+                            listView += `<li><a href="${sub.href}">${sub.smenu}</a></li>`
+                    })
+                    listView += `</ul>`
+                }
+
+        })
+        menu.innerHTML = listView;
+
+
+    </script>
+</body>
+</html>

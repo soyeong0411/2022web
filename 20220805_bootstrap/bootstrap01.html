@@ -5,29 +5,100 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>bootstrap01</title>
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/css/bootstrap.min.css">
+
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        :root {
+            --pColor: #f00;
+            --boxShadow1: 0 0 20px var(--pColor);
+            --p-font:20px;
+        }
+        /* body{background: var(--pColor);} */
+        .box{
+            width: 100px;height: 100px;background: var(--pColor);
+            box-shadow: var(--boxShadow1);
+            font-size: var(--p-font);
+        }
+
+    </style>
 </head>
 <body>
-    <!-- container는 반응형일 때 알아서 크기조정 -->
-    <div class="container bg-primary text-white">
-        <!-- row값이 꼭 있어야 사용 가능 -->
-        <div class="row">
-            <div class="col-6 col-sm-3 bg-success p-3">
+    <!-- <div class="box">test</div> -->
+    <div class="container">
+       <div class="row">
+           <div class="col-md-6 col-lg-3 p-3">
                 <div class="card">
-                    <div class="card-body">
-                        <div class="card-title">test</div>
+                    <!-- width 100% img-fluid:max-width값 / card-img-top 윗부분 둥글게-->
+                    <img src="../images/testimg.jpg" alt="" class="img-fluid w-100 card-img-top"> 
+                    <div class="cardbody">
+                        <h4 class="card-title mb-4">Lorem, ipsum dolor.</h4>
+                        <div class="btn btn-primary d-block d-md-inline-block">click</div>
                     </div>
                 </div>
+           </div>
+           <div class="col-md-6 col-lg-3 p-3">
+            <div class="card">
+                <!-- width 100% img-fluid:max-width값 / card-img-top 윗부분 둥글게-->
+                <img src="../images/testimg.jpg" alt="" class="img-fluid w-100 card-img-top"> 
+                <div class="cardbody">
+                    <h4 class="card-title mb-4">Lorem, ipsum dolor.</h4>
+                        <div class="btn btn-primary">click</div>
+                </div>
             </div>
-            <div class="col-6 col-sm-3 bg-danger">2</div>
-            <div class="col-6 col-sm-3 bg-info">3</div>
-            <div class="col-6 col-sm-3 bg-dark">4</div>
-        </div>
+            </div>
+            <div class="col-md-6 col-lg-3 p-3">
+                <div class="card">
+                    <!-- width 100% img-fluid:max-width값 / card-img-top 윗부분 둥글게-->
+                    <img src="../images/testimg.jpg" alt="" class="img-fluid w-100 card-img-top"> 
+                    <div class="cardbody">
+                        <h4 class="card-title mb-4">Lorem, ipsum dolor.</h4>
+                        <div class="btn btn-primary">click</div>
+                    </div>
+                </div>
+                </div>
+                <div class="col-md-6 col-lg-3 p-3">
+                    <div class="card">
+                        <!-- width 100% img-fluid:max-width값 / card-img-top 윗부분 둥글게-->
+                        <img src="../images/testimg.jpg" alt="" class="img-fluid w-100 card-img-top"> 
+                        <div class="cardbody">
+                            <h4 class="card-title mb-4">Lorem, ipsum dolor.</h4>
+                            <div class="btn btn-primary">click</div>
+                        </div>
+                    </div>
+                    </div>
+
+
+       </div>
     </div>
 
 </body>
 </html>
+ <!-- container는 반응형일 때 알아서 크기조정
+ <div class="container bg-primary text-white">
+    <!-- row값이 꼭 있어야 사용 가능 -->
+    <!-- <div class="row">
+        <div class="col-6 col-sm-3 bg-success p-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-title">test</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-sm-3 bg-danger">2</div>
+        <div class="col-6 col-sm-3 bg-info">3</div>
+        <div class="col-6 col-sm-3 bg-dark">4</div>
+    </div>
+</div> --> 
+ <!-- flex를 가지고 있음 -->
+ <!-- <div class="row"> -->
+    <!-- breakpoints - col은 모바일/ sm은 576이상일 때 / md 768 / lg는 992 pc / d-block d-lg-none lg일 때 none처리-->
+    <!-- <div class="col-12 col-sm-6 col-md-3 col-lg-4">1</div>
+    <div class="col">2</div>
+    <div class="col">3</div>
+    <div class="col d-block d-lg-none">4</div>
+</div> -->

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todolist03_obj02</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        .active{background: orange;}
+
+        .modify,.mod_cancel{display:none}
+
+    </style>
+</head>
+<body>
+    <div class="title"><h1>ToDoList</h1></div>
+    <div class="content">
+        <input type="hidden" class="idxnum">
+        <input type="text" class="newinp">
+        <button class="insert">할일입력</button>
+        <button class="modify">수정</button>
+        <button class="mod_cancel">수정취소</button>
+        <button class="alldel">전체삭제</button>
+    </div>
+
+    <ul class="viewData">
+
+    </ul>
+
+    <script>
+
+        const viewData = document.querySelector(".viewData");
+        const newinp = document.querySelector(".newinp");
+        const insert = document.querySelector('.insert');
+        const modify = document.querySelector('.modify');
+        const mod_can = document.querySelector('.mod_cancel');
+        const idxnum = document.querySelector('.idxnum');
+        const alldel = document.querySelector('.alldel');
+        
+
+        insert.addEventListener("click",function(){
+            let value = {"todo":newinp.value,"done":false}  // 문자로 넣어야 함 문자:변수
+
+            if(newinp.value != ""){
+                listData.push(value);
+                newinp.value = ""
+                view();
+            }else{
+                alert("할일을 입력하세요.")
+            }
+                  
+        })
+
+        modify.addEventListener("click",function(){
+            listData[idxnum.value].todo = newinp.value;
+            view();
+
+            insert.style.display = "block";
+            modify.style.display = "none";
+            mod_can.style.display = "none";
+            newinp.value = ""
+            
+        })
+
+        mod_can.addEventListener("click",function(){
+            newinp.value ="";
+            insert.style.display = "block";
+            modify.style.display = "none";
+            mod_can.style.display = "none"
+        })
+
+        alldel.addEventListener("click",function(){
+            listData = [];
+            view();
+        })
+
+
+
+
+        let listData = [
+            {
+                todo:"오늘할일1",   // key:value / obj data로 인식
+                done:true
+            },
+            {
+                todo:"오늘할일2",
+                done:false
+            },
+            {
+                todo:"오늘할일3",
+                done:false
+            },
+            {
+                todo:"오늘할일4",
+                done:true
+            },
+        ];
+
+        view();
+
+        function view(){
+            let viewList = ""
+
+            for(let i=0;i<listData.length;i++){
+                viewList += `<li>`
+                    
+                   if(listData[i].done == true){
+                        viewList += `<div class="active" onclick="done(${i})">${listData[i].todo}</div>`
+                   }else{
+                        viewList += `<div class="" onclick="done(${i})">${listData[i].todo}</div>`
+                   }        
+                   
+                        viewList += `<div class="iconWrap">
+                                    <i class="fa-solid fa-circle-minus" onclick="del(${i})"></i>
+                                    <i class="fa-solid fa-circle-exclamation" onclick="mod(${i},'${listData[i].todo}')"></i>`
+                   
+                   if(listData[i].done == true){
+                        viewList += `<i class="fa-solid fa-circle-check" onclick="done(${i})"></i>`
+                    }else{
+                        viewList += `<i class="fa-solid fa-circle-xmark" onclick="done(${i})"></i>`
+                    }
+
+                viewList += `</li>`
+
+            }
+
+            viewData.innerHTML = viewList;
+        }
+
+        function done(index){
+            listData[index].done = !listData[index].done
+            view();
+        }
+
+        function del(index){
+            listData.splice(index,1)
+            view();
+        }
+
+        function mod(index,todo){
+            idxnum.value = index;
+            newinp.value = todo;
+            insert.style.display = "none";
+            modify.style.display = "block";
+            mod_can.style.display = "block";
+        }
+
+    </script>
+
+
+
+
+</body>
+</html>
