@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todolist03_obj03</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        .viewData{width: 400px;margin: 0 auto;}
+        .viewData li{
+            position: relative;height: 40px;background: skyblue;
+            line-height: 40px;padding: 0 16px;margin-bottom: 2px;cursor: pointer;}
+        .viewData .iconWrap{
+            display: flex;position: absolute;gap:5px;right:10px;top: 5px;
+        }
+        .viewData .iconWrap a{
+            width: 30px;height: 30px;background: #000;color:white;border-radius: 50%;
+            display: flex;justify-content: center;align-items: center;line-height: 30px;
+        }
+        .viewData li .txt.active{background: skyblue;}
+        .viewData li .txt{padding: 0 16px;border-radius: 10px;}
+
+        .inpWrap{width: 400px;margin: 10px auto;display: flex;gap: 5px;}
+        .inpWrap input[type="text"]{flex-grow: 1;text-indent: 10px;}
+        .inpWrap .btn1{width: 100px;height: 40px;}
+    </style>
+</head>
+<body>
+    <div class="inpWrap">
+        <input type="hidden" class="num">
+        <input type="text" class="inp">
+        <button class="btn1">오늘의 할일</button>
+        <button class="mod">수정</button>
+    </div>
+
+
+    <ul class="viewData">
+        
+        <li>
+            <div class="txt">오늘의 할일</div>
+            <div class="iconWrap">
+                <a href="#" onclick="">D</a>
+                <a href="#" onclick="">M</a>
+                <a href="#" onclick="">Do</a>
+                <a href="#" onclick="">Ca</a>
+            </div>
+        </li>
+    </ul>
+    <script>
+        let listData = [
+            
+        ];
+
+            const viewData = document.querySelector(".viewData")
+            const inp = document.querySelector(".inp")
+            const btn1 = document.querySelector(".btn1")
+            const mod = document.querySelector(".mod")
+            const num = document.querySelector(".num")
+
+            btn1.addEventListener("click",function(){
+                if(inp.value !="" ){
+
+                let value = {"todo":inp.value,"done":false};
+
+                listData.push(value);
+
+
+                let valueData = JSON.stringify(listData) // object로 local에 뜨기때문에 stringify써줌 그럼 데이터가 보임 / stringify JSON으로 변경
+                localStorage.setItem("todoData",valueData)  // localStorage에 key:todoData value:valueData
+                inp.value ="";
+            
+                view(); // 출력이 되어야하니까
+            }else{
+                alert("오늘의 할일을 입력하세요.");
+                inp.focus();
+            }
+            })
+
+            mod.addEventListener("click",function(){
+                listData[num.value].todo = inp.value
+                view();
+            })
+
+
+        view();
+
+        function view(){
+            // local에 자료가 없으면 밑부분이 다 에러 그래서 조건문으로 만들어줌
+            if(localStorage.length>0){
+                //새로고침하면 화면에 출력이 안되는데 view함수는 실행이 되므로 view에 넣어줌 local에 있는 데이터를 화면에 출력하기 위해서 써줌
+                let localData = localStorage.getItem("todoData"); // 갖고옴 
+                listData = JSON.parse(localData); // parse는 JSON을 script로 listData(화면)에 출력
+            }
+            
+
+            todoData = "";
+            listData.forEach(function(item,i){
+                //console.log(item.todo)
+                console.log(listData[i]["todo"]);
+                todoData += `<li>`
+                if(item.done == true){
+                                todoData += `<div class="txt active">${listData[i]["todo"]}</div>`
+                            }else{
+                                todoData += `<div class="txt">${listData[i]["todo"]}</div>`
+                            }
+
+                                todoData +=`<div class="iconWrap">
+                                    <a href="#" onclick="del(${i})">D</a>
+                                    <a href="#" onclick="mod(${i},'${listData[i].todo}')">M</a>`
+                if(item.done == true){
+                    todoData += ` <a href="#" onclick="done(${i})">Ca</a>`
+                }else{
+                    todoData += ` <a href="#" onclick="done(${i})">Do</a>`
+                }
+                todoData +=            
+                                    
+                                `</div>
+                            </li>`
+            });
+            viewData.innerHTML = todoData
+
+        }
+
+        function del(idx){
+            listData.splice(idx,1);
+            
+            //local에도 같이 업데이트 해주기 위해
+            let valueData = JSON.stringify(listData)
+            localStorage.setItem("todoData",valueData)
+
+            view();
+        }
+        function done(idx){
+            listData[idx].done = ! listData[idx].done // true이면 false로 false면 true로 update
+            
+            let valueData = JSON.stringify(listData)
+            localStorage.setItem("todoData",valueData)
+
+            view();
+        }
+
+        function mod(idx,todo){
+            
+            num.value = idx;
+            inp.value = todo;
+            
+            // let valueData = JSON.stringify(listData)
+            // localStorage.setItem("todoData",valueData)
+
+            view();
+        }
+
+
+
+    </script>
+</body>
+</html>
