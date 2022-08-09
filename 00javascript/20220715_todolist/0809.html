@@ -6,59 +6,116 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>0809</title>
     <link rel="stylesheet" href="../../css/reset.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <style>
-        .list{width: 400px;margin: 0 auto;}
-
+        .todolist li .active{background: pink;}
+        .done{cursor: pointer;}
     </style>
 </head>
 <body>
-    <ul class="list">
+
+    <div class="insert">
+        <input type="text" class="inp">
+        <button class="inp_btn">할일 입력</button>
+    </div>
+    <ul class="todolist">
 
     </ul>
 
     <script>
 
-        const list = document.querySelector(".list")
-
+        const todolist = document.querySelector(".todolist")
+        const inp_btn = document.querySelector(".inp_btn")
+        const inp = document.querySelector(".inp")
 
         let todoData = [
-            {
-                todo:"오늘의 할일1",
-                done:false
-            },
-            {
-                todo:"오늘의 할일2",
-                done:true
-            },
-            {
-                todo:"오늘의 할일3",
-                done:true
-            },
+            
         ]
 
+        inp_btn.addEventListener("click",function(){
+
+            if(inp.value != ""){
+                let value = {"todo":inp.value,"done":false};
+
+                todoData.push(value);
+                inp.value = "";
+                
+                // #localStorage에도 저장
+                let valueData = JSON.stringify(todoData);
+                localStorage.setItem("todoD",valueData); // setItem : 스토리지에 key:value 값을 추가
+                
+                view();
+            }else{
+                alert("할일을 입력하세요!")
+                inp.focus();
+            }
+            
+        })
+
+
+
+
         function view(){
-            let viewList = "";
+
+            if(localStorage.length > 0){
+                let localData = localStorage.getItem("todoD"); // 키에 맞는 값을 찾음
+                todoData = JSON.parse(localData);
+            }
+
+            let todoView = "";
 
             todoData.forEach(function(item,i){
-                viewList += `<li>`
-                    if(listData[i].done == true){
-                        viewList += `<div class="active">${listData[i].todo}</div>`
+                todoView += `<li>`
+                    if(todoData[i].done == true){
+                        todoView += `<div class="active" onclick="">${todoData[i].todo}</div>`
                     }else{
-                        viewList += `<div class="">${listData[i].todo}</div>`
+                        todoView += `<div class="" onclick="">${todoData[i].todo}</div>`
                     }
-                viewList += `</li>`
-            });
-            
-            list.innerHTML = viewList;
+                todoView += `<div class="iconWrap">`
+                    if(todoData[i].done == true){
+                        todoView += `<i class="fa-solid fa-circle-check done" onclick="done(${i})"></i>
+                        `
+                    }else{
+                        todoView += `<i class="fa-solid fa-circle-xmark done" onclick="done(${i})"></i>
+                        `
+                    }
+                
+                todoView += `<i class="fa-solid fa-circle-exclamation" onclick=""></i>
+                            <i class="fa-solid fa-circle-minus" onclick="del(${i})"></i>`
+                todoView += `</div>
+                            </li>`
+ 
+            })
+
+            todolist.innerHTML = todoView;
         }
-            
+
         view();
 
+        function done(index){
+            todoData[index].done = !todoData[index].done;
+            
+            //local에도 같이 업데이트 해주기 위해
+            let valueData = JSON.stringify(todoData);
+            localStorage.setItem("todoD",valueData); // setItem : 스토리지에 key:value 값을 추가
 
-           
-        
+            view();
+        }
+
+        function del(index){
+            todoData.splice(index,1);
+
+            let valueData = JSON.stringify(todoData);
+            localStorage.setItem("todoD",valueData); // setItem : 스토리지에 key:value 값을 추가
+
+            view();
+        }
+
+     
+
     </script>
 
 </body>
