@@ -18,7 +18,7 @@
     background-size: cover;
 }
 
-.cont-1st .card{background:var(--bs-gray-100);transition:0.3s}
+.cont-1st .card{background:var(--bs-gray-100);transition:0.5s}
 .cont-1st .card img{height: 200px;}
 .cont-1st .card:hover{
     box-shadow: var(--shadow-color1);
@@ -35,3 +35,7 @@
 
 .cont-4st .owl-item{padding:20px;_background: red;transition:0.3s;opacity:0.3;}
 .cont-4st .owl-item.center{padding:0px;_background: red;opacity: 1;}
+
+.lazy-load{transform: translateY(300px);transition: .3s;opacity: 0;}
+/* 밑에서 위로 */
+.lazy-load.fade{transform: translateY(0);opacity: 1;}

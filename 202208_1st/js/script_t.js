@@ -44,3 +44,28 @@ $("#oslide2").owlCarousel({
         990:{items:4}
     }
 })
+
+$(".view .vPopup").magnificPopup({
+    type:"image"
+})
+
+const lazyload = document.querySelectorAll(".lazy-load");
+// 스크롤 내렸을 때 나타나는 것
+
+console.log(window.innerHeight)  // this=window
+
+window.addEventListener("scroll",function(){
+   lazyload.forEach(function(item){  // item은 lazy-load
+    const rect = item.getBoundingClientRect().top // viewport (급변)
+    console.log(rect)
+
+    if(rect <= window.innerHeight){ // innerHeight 브라우저크기
+        item.classList.add("fade")
+    }
+    // 화면의 경계선과 컨텐츠 위치값이 만났을 떄
+
+
+
+   })
+})
+
