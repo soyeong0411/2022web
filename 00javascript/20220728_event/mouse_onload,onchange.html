@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mouse_onload</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <img src="../../images/testimg.jpg" alt="" class="img">
+    <button class="btn">변경</button>
+    <form>
+        <select id="sel" onchange="changeImg()"> <!-- onchange 선택된 옵션 변경할 때 -->
+            <option value="../../images/testimg.jpg">banana</option> <!-- select의 인덱스 -->
+            <option value="../../images/banana.png">banana</option> 
+            <option value="../../images/apple.png">apple</option>
+        </select>
+        <img src="../../images/testimg.jpg" alt="" class="img1">
+
+        site<br>
+        <select id="selUrl" onchange="goUrl()">
+            <option value="">선택하세요.</option>
+            <option value="www.naver.com">naver</option>
+            <option value="www.daum.net">daum</option>
+        </select>
+    </form>
+
+
+    <script>
+        let img = document.querySelector(".img");
+        let btn = document.querySelector(".btn");
+        console.log(img.width) // 이 때 img 크기는 0 -> 문서가 load 되어야 값이 나옴
+
+        // btn.onclick = function(){}
+        // btn.onclick = myClick;
+        // function myClick(){}
+        // btn.addEventListener("click",function(){})
+        btn.onclick = function(){
+            img.src = "../../images/apple.png"
+            console.log(img.width) // 기존 이미지 값
+
+            img.onload = function(){
+                console.log(img.width) // 변경 이미지 값
+            }
+        }
+
+        // img값을 알고 싶을 때
+        // window.onload = function(){
+        //     console.log(img.width)
+        // }
+
+        function changeImg(){
+            let sel = document.querySelector("#sel");
+            let index = sel.selectedIndex; // option
+            let img1 = document.querySelector(".img1")
+            console.log(index) // 선택
+            console.log(sel.options[index].value) // 이미지 경로명
+
+            img1.src = sel.options[index].value
+        }
+
+        function goUrl(){
+            let selUrl = document.querySelector("#selUrl");
+            let idx = selUrl.selectedIndex // 소괄호 없으면 속성
+            console.log(idx)
+            
+            location.href = "http://" + selUrl.options[idx].value;
+        }
+
+    </script>
+</body>
+</html>
