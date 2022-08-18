@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>new_image</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <img src="../../images/img1.jpg" alt="" onclick="change(this)">
+    <script>
+        const files = [
+            "img1.jpg",
+            "img2.jpg",
+            "img3.jpg",
+            "img4.jpg",
+            "img5.jpg",
+            "img6.jpg",
+            "img7.jpg",
+        ];
+
+        //let next = 1;
+
+        //#1
+        // function change(img){
+        //     console.log(img.src)
+        //     img.src = `../../images/${files[next]}`
+        //     next++;
+        //     // if(next == 7) 
+        //     // next = 0;//한줄은 중괄호 안써도 괜춘
+        //     next %= files.length;
+        // }
+
+        // #2
+        const imgs = new Array();
+        //imgs[0] = "img1.jpg"
+
+        for(let i=0;i<files.length;i++){
+            imgs[i] = new Image();
+            imgs[i].src = `../../images/${files[i]}`;
+        }
+
+        let next = 1;
+        function change(img){
+            img.src = imgs[next].src // this.src에 imgs[next].src를 넣어라
+            next++;
+            next %=imgs.length;
+        }
+    </script>
+</body>
+</html>
