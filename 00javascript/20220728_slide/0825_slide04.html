@@ -31,52 +31,70 @@
 
             let current = 0;
             const liNum = $(".slide>li").length;
+            let overBtn = true;
             console.log(liNum)
 
             $(".next").click(function(e){
                 e.preventDefault();
-                $(".slide>li").eq(current).css({left:0}).stop().animate({},function(){}) // 
-                current++;
-                if(current == liNum){
-                    current = 0;
-                }
+
+                slider("next");
             })
+
             $(".prev").click(function(e){
                 e.preventDefault();
-                current--;
-                if(current < 0){
-                    current = liNum -1;
-                }
+                
+                slider("prev");
+                
             })
+            // 이중클릭 안되게 막아줌
+            function slider(slide){
 
+                if(slide == "next"){
 
-           $(".next").click(function(){
-                $(".slide>li").eq(current).css({left:0}).stop().animate({left:"-100%"})
+                    console.log("next")
+                    if(overBtn == true){
+                    overBtn = false;
+                    $(".slide>li").eq(current).css({left:0}).stop().animate({left:"-100%"},1000);
+                    current++;
+                    if(current == liNum){
+                        current = 0;
+                    }
+                    $(".slide>li")
+                        .eq(current)
+                        .css({left:"100%"})
+                        .stop()
+                        .animate({left:0},1000,function(){
+                            console.log("ok")
+                            overBtn = true;
+                        });
+                    }
+                }else{
+                    console.log("prev")
 
-                current++;
-                if(current == liNum) current=0;
+                    if(overBtn == true){
+                        overBtn = false;
+                    $(".slide>li").eq(current).css({left:0}).stop().animate({left:"100%"},1000);
+                    current--;
+                    if(current < 0){
+                        current = liNum -1;
+                    }
 
-                $(".slide>li").eq(current).css({left:"100%"}).stop().animate({left:0})
-                console.log(current)
-           })
-           $(".prev").click(function(){
-                $(".slide>li").eq(current).css({left:0}).stop().animate({left:"100%"})
-
-                current--;
-                //if(current == -liNum) current=0;
-                if(current <0) current = liNum -1;
-                $(".slide>li").eq(current).css({left:"-100%"}).stop().animate({left:0})
-                console.log(current)
-           })
+                    $(".slide>li").eq(current).css({left:"-100%"}).stop().animate({left:0},1000,function(){
+                        overBtn=true
+                    });
+                }
+                }
+            }
+           
 
         //    setInterval(nextTrigger,3000)
         //    function nextTrigger(){
         //     $(".next").trigger("click")
         //    }
            
-            setInterval(function(){
-                $(".next").trigger("click")
-            },3000)
+            // setInterval(function(){
+            //     $(".next").trigger("click")
+            // },3000)
         })
     </script>
 </head>

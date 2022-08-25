@@ -1,0 +1,62 @@
+@charset "utf-8";
+
+.mylatest{
+    width: 1200px;padding: 20px;
+    display: flex;
+    margin: 0 auto;
+}
+.title{
+    width: 250px;
+}
+.title h3{
+    font-size: 20px;
+    color:#333;
+    margin-bottom: 10px;
+}
+.title .mIcon{
+    display: block;
+    text-indent: -9999px;
+    width: 23px;height: 23px;
+    background-image: url(./images/more_btn.png);
+    background-position: 0 -23px;
+}
+.title .mIcon:hover{
+    background-position: 0 0;
+}
+.mylatest .content{
+    display: flex;
+    gap:50px;
+    flex:1 1 auto;
+}
+.mylatest .content a{
+    display: block;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+/* w값 고정 */
+.mylatest .title{
+    width: 250px;height: 200px;
+    flex:0 0 auto; /* 남는영역 나눠가짐, 줄어들었을때 나눠가짐,값유지 */
+}
+.mylatest .content h4{
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: initial;
+}
+.mylatest .content p{
+    align-self: flex-end;
+}
+.mylatest .content li{
+    position: relative;
+}
+.mylatest .content li:after{
+    content:"";display: block;width: 1px;
+    height: 200px;background: rgb(219, 219, 219);
+    position: absolute;top: 0px;right: -25px;
+}
+
+.mylatest .content li:last-child:after{
+    display: none;
+}
