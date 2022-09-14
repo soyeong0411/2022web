@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            background: #ddd;
+            width: 300px;height: 200px;
+        }
+        .txt1{
+            fill:#f00;
+            stroke: #000;
+            font-size: 2em;
+            font-weight: bold;
+        }
+        .cir1{
+            fill:#fff;
+            transform: translate(0,0);
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <svg width="300" height="200">
+
+            <defs>
+                <mask id="mText">
+                    <circle cx="0" cy="0" r="30" class="cir1"></circle> <!-- svg안에 있어야 함 -->
+                </mask>
+            </defs>
+
+            <g mask="url(#mText)">
+                <text x="0" y="32" class="txt1">
+                    Lorem ipsum dolor sit 
+                    <tspan x="0" y="60">amet consectetur adipisicing elit.</tspan>
+                    <tspan x="0" y="90">Voluptate, quas?</tspan>
+                </text>
+            </g>
+            
+        </svg>
+    </div>
+
+    <script>
+        const cirElem = document.querySelector(".cir1");
+        const boxElem = document.querySelector(".box");
+
+        boxElem.addEventListener("mousemove",function(event){
+            console.log("x: "+event.clientX," y: "+event.clientY);
+
+            cirElem.style.transform = `translate(${event.clientX-30}px,${event.clientY-30}px)`
+        })
+
+    </script>
+</body>
+</html>
