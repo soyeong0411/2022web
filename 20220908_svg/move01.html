@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background: #ddd;
+        }
+        .wrap{
+            background: skyblue;
+            width: 200px;height: 500px;
+            position: relative;
+        }
+        .body{
+            position: absolute;
+            left:40px;
+        }
+        .arm1{
+            width: 114px;height: 197px;
+            transform: rotate(30deg);
+            transform-origin: 80px 15px;
+            position: absolute;
+            top: 101px;left: 9px;
+            animation: aAni01 0.5s alternate infinite linear;
+        }
+        @keyframes aAni01 {
+            to{
+                transform: rotate(-80deg);
+            }
+        }
+        .arm2{
+            width: 114px;height: 197px;
+            transform: rotate(30deg);
+            transform-origin: 80px 15px;
+            position: absolute;
+            top: 101px;left: 9px;
+            animation: aAni02 0.5s alternate infinite linear;
+            animation-delay: 0.5s;
+        }
+        @keyframes aAni02 {
+            to{
+                transform: rotate(-80deg);
+            }
+        }
+        .wrap{
+            transform:translate(0,0);
+            animation: wAni 0.3s alternate infinite;
+        }
+        .wAni{
+            transform: translate(0,0);
+        }
+        @keyframes wAni {
+            100%{
+                transform: translate(0,10px);
+            }
+        }
+        .leg1{
+            width: 114px;height: 346px;
+            transform-origin: 35px 42px;
+            transform: rotate(359deg);
+            position: absolute;
+            top: 198px;left: 27px;
+        }
+        .leg2{
+            width: 114px;height: 346px;
+            transform-origin: 35px 42px;
+            transform: rotate(330deg);
+            position: absolute;
+            top: 193px;left: 43px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="wAni">
+        <div class="wrap">
+            <div class="arm2">
+                <img src="img/arms.png" alt="">
+            </div>
+            <div class="leg2">
+                <img src="img/legs.png" alt="">
+            </div>
+            <div class="body">
+                <img src="img/body.png" alt="">
+            </div>
+            <div class="leg1">
+                <img src="img/legs.png" alt="">
+            </div>
+            <div class="arm1">
+                <img src="img/arms.png" alt="">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
