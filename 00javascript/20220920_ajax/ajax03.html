@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax03</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        *{margin: 0;padding: 0;}
+        li{list-style: none;}
+
+        .wrap{
+            width: 1200px;margin: 0 auto;
+        }
+        .wrap .list{
+            display: flex;
+            gap:20px;
+        }
+        .wrap .list li{
+            width: 25%;text-align: center;
+            padding: 10px;
+        }
+        .list li img{
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <ul class="list">
+        <!-- <li>
+            <img src="img/1.jpg" alt="">
+            <h3>당신이 옳다</h3>
+            <p>정혜신</p>
+            <p>12,720</p>
+        </li> -->
+        
+    </ul>
+</div>
+
+<script>
+    $.ajax({
+        url:"./data/book.json",
+        dataType:"json",
+        success:viewData
+    })
+    function viewData(data){
+        console.log(data.book)
+        
+        let list = ""
+        for(let i=0;i<data.book.length;i++){
+            list += `<li>
+                <img src="img/${data.book[i].bookimg}" alt="">
+                <h3>${data.book[i].title}</h3>
+                <p>${data.book[i].author}</p>
+                <p>${data.book[i].price}</p>
+                </li>`
+        }
+        $(".list").html(list)
+    }
+</script>
+</body>
+</html>
