@@ -49,7 +49,7 @@
         function search(sea){
             axios
             .get(
-                "https://dapi.kakao.com/v2/search/web?query="+sea+"&sort=recency&size=10",
+                "https://dapi.kakao.com/v2/search/web?query="+sea+"&sort=recency&size=10", // params:{query:"이효리",size:10,page:1}
 
                 {
                     headers:{Authorization: "KakaoAK f614dc58c5e8bf0954c9ca9da1896c02"}

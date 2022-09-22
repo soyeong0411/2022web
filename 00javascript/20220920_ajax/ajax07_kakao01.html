@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax07_kakao</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js" integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="js/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/locale/ko.min.js" integrity="sha512-3kMAxw/DoCOkS6yQGfQsRY1FWknTEzdiz8DOwWoqf+eGRN45AmjS2Lggql50nCe9Q6m5su5dDZylflBY2YjABQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<style>
+        *{margin: 0;padding: 0;box-sizing: border-box;}
+        a:link,a:visited{
+            text-decoration: none;color:#333
+        }
+        ul{list-style: none;}
+        .list .date{
+            color:#aaa;align-self: flex-end;
+        }
+        .list li{
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+        .wrap{
+            width: 1000px;margin: 0 auto;
+            padding: 20px 25px;background: #eee;
+        }
+        .search{
+            display: flex;gap: 10px;
+            margin-bottom: 30px;
+        }
+        .search .inp-search{
+            flex:1 0 auto;
+            padding: 10px;
+            border-radius: 30px;    
+            text-indent: 20px;       
+        }
+        .search .btnIcon{
+            width: 35px;height: 35px;background: white;
+            color:#333;border-radius: 50%;
+            display: flex;justify-content: center;align-items: center;
+            align-self:center;
+        }
+    </style>
+</head>
+<body>
+    <!-- <script>
+        const today = moment();
+        console.log(today.format('YYYY/MM/DD HH'))
+    </script> -->
+   
+    <div class="wrap">
+        <div class="search">
+            <input type="text" class="inp-search" placeholder="검색어를 입력하세요.">
+            <div class="btnIcon"><i class="fa-solid fa-magnifying-glass"></i></div>
+        </div>
+        <ul class="list">
+            <!-- <li>
+                <h3><a href="#">title</a></h3>
+                <p class="content">contents</p>
+                <p class="date">2022-09-22</p>
+            </li>
+            <li>
+                <h3><a href="#">title</a></h3>
+                <p class="content">contents</p>
+                <p class="date">2022-09-22</p>
+            </li> -->
+        </ul>
+        <div class="paging">
+            <a href="#" onclick="sView('집',1)">1</a>
+            <a href="#" onclick="sView('집',2)">2</a>
+        </div>
+    </div>
+    <script>
+
+        let page = 1; // 전역변수
+        let kakaoUrl = 'https://dapi.kakao.com//v2/search/web';
+        let query; // 전역변수
+
+        sView("집")
+
+        function sView(query){
+            axios
+            .get(
+                getPath(),getParams(query) // getPath에는 kakaoUrl값이 들어옴
+            )
+            .then(onResult)
+            .catch(onError);
+        }
+
+        function getPath(){
+            return kakaoUrl; // 바깥으로 출력
+        }
+
+        function getParams(query){
+            return{
+                params:{query:query, size:10, page:page, sort:"recency"}, //key:value
+                headers:{Authorization: "KakaoAK f614dc58c5e8bf0954c9ca9da1896c02"}
+            }
+        }
+
+        function onResult(v){
+            // console.log(v.data.documents)
+
+             // for(let i=0;i<sData.length;i++){
+            //     console.log(sData[i].title)
+            // }
+
+           let sData = v.data.documents;
+
+            let sList = ""
+
+           sData.forEach(function(item,i){
+               //console.log(sData[i].title)
+               console.log(item.title)
+
+               sList += `<li>
+                <h3><a href="${item.url}">${item.title}</a></h3>
+                <p class="content">${item.contents}</p>
+                <p class="date">${moment(item.datatime).format('YYYY년 MM월 DD일 dddd')}</p>
+            </li>
+            `
+            })
+            $(".list").html(sList)
+             
+           
+        }
+        function onError(error){
+            console.log("error")
+        }
+
+        $(".btnIcon").click(function(){
+            console.log($(".inp-search").val())
+            query = $(".inp-search").val();
+
+            sView(query)
+            
+        })
+
+
+    </script>
+
+</body>
+</html>
