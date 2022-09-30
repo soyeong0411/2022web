@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <style>
+        *{
+            margin: 0;padding: 0;
+            box-sizing: border-box;
+        }
+        a:visited,a:link{
+            text-decoration: none;
+            color:#333
+        }
+        ul,li{
+            list-style: none;
+        }
+        .container{
+            width: 1000px;
+            margin: 0 auto;
+        }
+        .navbar{
+            display: flex;
+        }
+        .nav{
+            margin-left: auto;
+        }
+        .nav ul{
+            display: flex;gap:10px;
+            height: 40px;
+        }
+        .nav ul li{
+            padding: 0 10px;
+            height: 100%;
+        }
+        .nav ul li a{
+            display: flex;justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        /* banner */
+        .banner h3{
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .banner ul{
+            display: flex;gap: 20px;
+            flex-wrap: wrap;
+        }
+        .banner ul li{
+            width: calc((100% - 40px) / 3);
+        }
+        .banner ul li img{
+            width: 100%;
+        }
+        .banner ul li .img{
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            padding-top: 60%;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        /* modal */
+        .modal{
+            width: 400px;
+            position: fixed;
+            left: 50%;top: 50%;
+            transform: translate(-50%,-50%);
+            background: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 0;
+            box-shadow: 10px 10px 20px rgba(0,0,0,0.3);
+            border-radius: 10px;
+            gap:10px;
+        }
+        .modal .img{
+            width: 90%;
+        }
+        .modal img{
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <header class="header">
+            <div class="container">
+                <div class="navbar">
+                    <h1><a href="#">{{logo}}</a></h1>
+                    <div class="nav">
+                        <ul>
+                            <li v-for="(item,i) in menu">
+                                <a v-bind:href="item.url">{{menu[i].menu}}</a>
+                                <!-- <a v-bind:href={{item.url}}>{{menu[i].menu}}</a>  --> <!-- 속성값에는 {{}}로 쓸 수 없고 v-bind를 붙여서 씀 -->
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="container banner">
+            <h3>공지사항</h3>
+            <ul>
+                <li v-for="(item,i) in noticeData">
+                    <!-- <div v-if="i<4"> -->
+                        <!-- <img v-bind:src="`img/${item.img}`" alt=""> img라는 문자와 item.img라는 변수가 붙으므로 ``써줌 -->
+                        <div class="img" :style="{'background-image':`url(img/${item.img})`}"> <!-- '-' 때문에 '' / 변수를 넣을 땐 ``  -->
+                            
+                            
+                        </div>
+                        <h4 @click="modalView = true;modalNum = i">{{noticeData[i].title}}</h4> <!-- 타이틀을 클릭하면 modal창 title에 해당 index값 불러옴 -->
+                        
+                    <!-- </div> -->
+                </li>
+            </ul>
+        </div>
+        <div class="modal" v-if="modalView == true">
+            <div class="img">
+                <img v-bind:src="`img/${noticeData[modalNum].img}`" alt=""> <!-- 해당 index값 이미지 불러옴 -->
+            </div>
+            <h4>
+                {{noticeData[modalNum].title}}
+                <button @click="modalView = false">닫기</button>
+            </h4>
+        </div>
+
+        <div class="sliderWrap">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img :src="`img/${noticeData[0].img}`" alt="">
+                        <h4>{{noticeData[0].title}}</h4>
+                    </div>
+                    <div class="swiper-slide">
+                        <img :src="`img/${noticeData[1].img}`" alt="">
+                        <h4>{{noticeData[1].title}}</h4>
+                    </div>
+                    <div class="swiper-slide"></div>
+                    <div class="swiper-slide"></div>
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+
+        
+    </div>
+    
+
+    <script src="https://unpkg.com/vue@next"></script>
+    
+    <script type="module">
+        import {noticeData,newsData,snsData} from "./data.js"
+        const myWeb = {
+            data(){
+                return {
+                    logo:"hihihi",
+                    menu:[
+                        {menu:"회사소개",url:"http://www.naver.com"},
+                        {menu:"제품소개",url:"http://www.naver.com"},
+                        {menu:"온라인문의",url:"http://www.naver.com"},
+                        {menu:"커뮤니티",url:"http://www.naver.com"},
+                    ],
+                    noticeData:noticeData,
+                    modalView:false,
+                    modalNum:0, //index값
+                }
+            }
+        }
+
+
+
+       Vue.createApp(myWeb).mount("#app");
+    </script>
+    <script src="js/script.js"></script>
+    
+</body>
+</html>
